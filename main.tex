@@ -1,0 +1,810 @@
+\def\arxivtng{1}
+
+\if\arxivtng1
+\documentclass[dvipsnames,11pt]{article}
+\usepackage{fullpage}
+\usepackage{parskip}
+\else
+\documentclass[dvipsnames]{article}
+
+\usepackage[preprint,nonatbib]{neurips_2023}
+\fi
+
+\usepackage{fancyhdr}
+\usepackage[numbers]{natbib}
+\setcitestyle{numbers}
+
+
+\usepackage[utf8]{inputenc} % allow utf-8 input
+\usepackage[T1]{fontenc}    % use 8-bit T1 fonts
+\usepackage{url}            % simple URL typesetting
+\usepackage{booktabs}       % professional-quality tables
+\usepackage{amsfonts}       % blackboard math symbols
+\usepackage{nicefrac}       % compact symbols for 1/2, etc.
+\usepackage{microtype}      % microtypography
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\usepackage{multirow}
+\usepackage{hyperref}
+\usepackage[table,dvipsnames]{xcolor}
+\usepackage{babel}
+\usepackage{subcaption}
+
+\hypersetup{
+  colorlinks   = true, %Colours links instead of ugly boxes
+  urlcolor     = RoyalBlue, %Colour for external hyperlinks
+  linkcolor    = RoyalBlue, %Colour of internal links
+  citecolor   = RoyalBlue %Colour of citations
+}
+
+\definecolor{light-light-gray}{gray}{0.92} 
+
+\usepackage{rotating}
+\usepackage{placeins}
+\usepackage{enumitem}
+\usepackage{wrapfig}
+
+\usepackage{colortbl}
+\usepackage{cellspace}
+\setlength\aboverulesep{0pt}
+\setlength\belowrulesep{0pt}
+\setlength\cellspacetoplimit{3pt}
+\setlength\cellspacebottomlimit{3pt}
+
+\newcolumntype{w}{>{\columncolor{white}}c}
+\usepackage{caption}
+\captionsetup[table]{skip=2pt}
+
+% this is supposed to enable notes in tables
+\usepackage{marginnote}
+\renewcommand{\marginpar}{\marginnote}
+
+\usepackage[capitalize,noabbrev]{cleveref}
+\newcommand{\customfootnotetext}[2]{{%
+  \renewcommand{\thefootnote}{#1}%
+  \footnotetext[0]{#2}}}%
+
+\usepackage{xpatch}
+\makeatletter
+\renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}                                     {1.35ex \@plus1ex \@minus.2ex}                                {-.5em}
+{\normalfont\normalsize\bfseries}}
+\makeatother
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% MACROS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{xspace}
+\newcommand{\datanet}{\textsc{DataComp}\xspace}
+\newcommand{\users}{participants\xspace}
+\newcommand{\user}{participant\xspace}
+\newcommand{\byod}{\textsc{BYOD}\xspace}
+\newcommand{\pool}{\textsc{CommonPool}\xspace}
+\newcommand{\ours}{\textsc{DataComp}-1B\xspace}
+
+\usepackage{pifont}% http://ctan.org/pkg/pifont
+\newcommand{\cmark}{\ding{51}}%
+\newcommand{\xmark}{\ding{55}}%
+\usepackage[textsize=tiny]{todonotes}
+\newcommand{\yair}[1]{\todo{Yair: #1}}
+\newcommand{\jenia}[1]{\todo{Jenia: #1}}
+\newcommand{\steve}[1]{\todo{Steve: #1}}
+\newcommand{\rahim}[1]{\todo{Rahim: #1}}
+\newcommand{\olga}[1]{\todo{Olga: #1}}
+\newcommand{\gamaga}[1]{\todo{GI: #1}}
+\newcommand{\dhruba}[1]{\todo{Dhruba: #1}}
+\newcommand{\thao}[1]{\todo{Thao: #1}}
+\newcommand{\pw}[1]{\textcolor{ForestGreen}{[PW: #1]}}
+\newcommand{\sg}[1]{\textcolor{Red}{[todo: #1]}}
+
+
+\renewcommand{\floatpagefraction}{.9}
+
+\title{\datanet:\\In search of the next generation of multimodal datasets\vspace{2pt}} 
+
+
+\if\arxivtng1
+\author{
+\normalsize Samir Yitzhak Gadre*$^{2}$
+\hspace{0.2em}
+\normalsize Gabriel Ilharco*$^{1}$
+\hspace{0.2em}
+\normalsize Alex Fang*$^{1}$
+\hspace{0.2em}
+\normalsize Jonathan Hayase$^{1}$
+\hspace{0.2em}
+\normalsize Georgios Smyrnis$^{5}$
+\\
+\normalsize Thao Nguyen$^{1}$
+\quad
+\normalsize Ryan Marten$^{7,9}$
+\quad
+\normalsize Mitchell Wortsman$^{1}$
+\quad
+\normalsize  Dhruba Ghosh$^{1}$
+\quad
+\normalsize Jieyu Zhang$^{1}$
+\\
+\normalsize  Eyal Orgad$^{3}$
+\quad
+\normalsize  Rahim Entezari$^{10}$
+\quad
+\normalsize  Giannis Daras$^{5}$
+\quad
+\normalsize Sarah Pratt$^{1}$
+\quad
+\normalsize  Vivek Ramanujan$^{1}$
+\\
+\normalsize  Yonatan Bitton$^{11}$
+\quad
+\normalsize  Kalyani Marathe$^{1}$
+\quad
+\normalsize  Stephen Mussmann$^{1}$
+\quad 
+\normalsize  Richard Vencu$^{6}$
+\\ 
+\normalsize  Mehdi Cherti$^{6,8}$
+\quad
+\normalsize   Ranjay Krishna$^{1}$
+\quad
+\normalsize  Pang Wei Koh$^{1}$
+\quad
+\normalsize  Olga Saukh$^{10}$
+\quad
+\normalsize  Alexander Ratner$^{1}$
+\\
+\normalsize  Shuran Song$^{2}$
+\quad
+\normalsize  Hannaneh Hajishirzi$^{1,7}$
+\quad
+\normalsize   Ali Farhadi$^{1}$
+\quad
+\normalsize   Romain Beaumont$^{6}$
+\\
+\normalsize   Sewoong Oh$^{1}$
+\quad
+\normalsize   Alexandros G. Dimakis$^{5}$
+\quad
+\normalsize   Jenia Jitsev$^{6,8}$
+\\
+\normalsize   Yair Carmon$^{3}$
+\quad
+\normalsize   Vaishaal Shankar$^{4}$
+\quad
+\normalsize   Ludwig Schmidt$^{1,6,7}$
+}
+\else
+\author{%
+  Samir Yitzhak Gadre*$^{2}$ Gabriel Ilharco*$^{1}$ Alex Fang*$^{1}$ Jonathan Hayase$^{1}$ Georgios Smyrnis$^{5}$ \AND Thao Nguyen$^{1}$ Ryan Marten$^{7,9}$ Mitchell Wortsman$^{1}$ Dhruba Ghosh$^{1}$ Jieyu Zhang$^{1}$ \AND Eyal Orgad$^{3}$ Rahim Entezari$^{10}$ Giannis Daras$^{5}$ Sarah Pratt$^{1}$ Vivek Ramanujan$^{1}$ \AND Yonatan Bitton$^{11}$ Kalyani Marathe$^{1}$ Stephen Mussmann$^{1}$ Richard Vencu$^{6}$ Mehdi Cherti$^{6,8}$ Ranjay Krishna$^{1}$ \AND Pang Wei Koh$^{1,12}$ Olga Saukh$^{10}$ Alexander Ratner$^{1}$ Shuran Song$^{2}$ Hannaneh Hajishirzi$^{1,7}$ \AND Ali Farhadi$^{1}$ Romain Beaumont$^{6}$ Sewoong Oh$^{1}$ Alex Dimakis$^{5}$ Jenia Jitsev$^{6,8}$ \AND Yair Carmon$^{3}$ Vaishaal Shankar$^{4}$ Ludwig Schmidt$^{1,6,7}$ \vspace{0.5cm} \\ 
+  $^{1}$University of Washington, \,
+  $^{2}$Columbia University, \,
+  $^{3}$Tel Aviv University, \,\\
+  $^{4}$Apple, \,
+  $^{5}$UT Austin, \,
+  $^{6}$LAION, \,
+  $^{7}$AI2, \, \\
+  $^{8}$Juelich Supercomputing Center, Research Center Juelich, \,
+  $^{9}$University of Illinois Urbana-Champaign, \, \\
+  $^{10}$Graz University of Technology, \,
+  $^{11}$Hebrew University. \,
+  % $^{12}$Google Research, \,
+}
+\fi
+
+\begin{document}
+
+\if\arxivtng1
+\date{}
+\customfootnotetext{${^*}$}{Equal contribution, randomly ordered. Correspondence to \url{contact@datacomp.ai}. 
+  $^{1}$University of Washington
+  $^{2}$Columbia University
+  $^{3}$Tel Aviv University
+  $^{4}$Apple
+  $^{5}$UT Austin
+  $^{6}$LAION
+  $^{7}$AI2
+  $^{8}$Juelich Supercomputing Center, Research Center Juelich
+  $^{9}$University of Illinois Urbana-Champaign
+  $^{10}$Graz University of Technology
+  $^{11}$Hebrew University.
+  % $^{12}$Google Research.
+}
+\else
+\fi
+
+\maketitle
+
+\vspace{-20pt}
+\begin{abstract}
+Large multimodal datasets have been instrumental in recent breakthroughs such as CLIP, Stable Diffusion, and GPT-4.
+At the same time, datasets rarely receive the same research attention as model architectures or training algorithms.
+To address this shortcoming in the machine learning ecosystem, we introduce \datanet, a participatory benchmark where the training code is fixed and researchers innovate by proposing new training sets.
+Concretely, we provide a testbed for dataset experiments centered around a new candidate pool of 12.8B image-text pairs from Common Crawl.
+Participants in our benchmark design new filtering techniques or curate new data sources and then evaluate their new dataset by running our standardized CLIP training code and testing the resulting model on 38 downstream test sets.
+Our benchmark consists of multiple scales, with four candidate pool sizes and associated compute budgets ranging from 12.8M to 12.8B samples seen during training.
+This multi-scale design facilitates the study of scaling trends and makes the benchmark accessible to researchers with varying resources.
+
+Our baseline experiments show that the \datanet workflow is a promising direction for improving multimodal datasets.
+We introduce \ours, a dataset created using a simple filtering algorithm applied to the 12.8B candidate pool.
+The resulting 1.4B subset enables training a CLIP ViT-L/14 from scratch to 79.2\% zero-shot accuracy on ImageNet. 
+Our new ViT-L/14 model outperforms a larger ViT-g/14 trained on LAION-2B by 0.7 percentage points while requiring $9\times$ less compute during training.
+We also outperform OpenAI's CLIP ViT-L/14 by 3.7 percentage points, which is trained with the same compute budget as our model.
+These gains highlight the potential for improving model performance by carefully curating training sets.
+We view \ours as only the first step and hope that \datanet paves the way toward the next generation of multimodal datasets.
+
+We publicly release our datasets, associated tooling, filtering baselines, and our code for training and evaluating models at \url{www.datacomp.ai}.
+\vspace{30pt}
+\end{abstract}
+
+
+\section{Introduction}
+\label{sec:introduction}
+
+The past two years have seen multiple breakthroughs in multimodal learning.
+A new family of models including  CLIP~\citep{radford2021learning}, DALL-E~\citep{ramesh2021zero,ramesh2022hierarchical}, Stable Diffusion~\citep{rombach2022high}, Flamingo~\citep{alayrac2022flamingo}, and GPT-4~\citep{gpt4} offer unprecedented generalization capabilities in zero-shot classification, text-guided image generation, and in-context learning.
+While these advances use different algorithmic techniques such as contrastive learning, diffusion, or auto-regressive modeling, they all rest on a common foundation: large datasets containing paired image-text examples.
+For instance, CLIP’s training set contains 400 million image-text pairs, and Stable Diffusion was trained on subsets of LAION-2B~\citep{laion5b}, a dataset of more than two billion image-text pairs.
+This new generation of image-text datasets is more than 1,000 times larger than previous training datasets such as the widely used ImageNet, which contains 1.2M images \citep{deng2009imagenet,ILSVRC15}.
+
+\begin{table}[t]
+\rowcolors{2}{light-light-gray}{white}
+\setlength\tabcolsep{5.5pt}
+\renewcommand{\arraystretch}{1.1}
+\small
+\centering
+\caption{Zero-shot performance of CLIP models trained on various datasets. Our dataset \ours, assembled with a simple filtering procedure on image-text pairs from Common Crawl, leads to a model with higher accuracy than previous results while using the same or less compute.
+Training compute is measured in the total number of multiply-accumulate operations during training (MACs).
+See Section \ref{sec:evaluation} for details on the evaluation datasets.
+}
+\label{tab:tab1}
+\resizebox{\textwidth}{!}{
+\begin{tabular}{lcccccc}
+\toprule
+ & & \# samples  & &  Train compute  &ImageNet & Avg. performance \\
+\multirow{-2}{*}{Dataset}  & \multirow{-2}{*}{Dataset size}  & seen & \multirow{-2}{*}{Architecture} &  (MACs) & accuracy & (38 datasets) \\\midrule
+OpenAI's WIT \cite{radford2021learning} & 0.4B & 13B & ViT-L/14 & $1.1\times 10^{21}$ & 75.5 & 0.61\\
+LAION-400M \cite{laion400m,cherti2022reproducible}  &  0.4B  & 13B & ViT-L/14 & $1.1\times 10^{21}$ & 73.1 & 0.58\\
+LAION-2B \cite{laion5b,cherti2022reproducible} & 2.3B  & 13B & ViT-L/14 & $1.1\times 10^{21}$& 73.1 & 0.59\\
+LAION-2B \cite{laion5b,cherti2022reproducible} & 2.3B  & 34B  & ViT-L/14 & $2.6\times 10^{21}$& 75.2 & 0.61\\
+% LAION-2B (our codebase)   & 2.3B  & 13B & ViT-L/14 & $1.1\times 10^{21}$ & 75.7 & 0.62\\\midrule
+LAION-2B \cite{laion5b,cherti2022reproducible} & 2.3B  & 34B  & ViT-H/14 & $6.5\times 10^{21}$& 78.0 & 0.64\\
+LAION-2B \cite{laion5b,cherti2022reproducible} & 2.3B  & 34B  & ViT-g/14 & $9.9\times 10^{21}$& 78.5 & 0.64\\
+\midrule
+\ours (ours)  & 1.4B  & 13B & ViT-L/14 & $1.1\times 10^{21}$ & \textbf{79.2} & \textbf{0.66}\\
+\bottomrule
+\end{tabular}
+}
+\vspace{3pt}
+
+\end{table}
+
+
+Despite the central role large image-text datasets play in multimodal learning, little is known about them.
+Many state-of-the-art datasets are proprietary and only available in corporate research labs, as in the case of CLIP \cite{radford2021learning}, DALL-E \cite{ramesh2021zero,ramesh2022hierarchical}, Flamingo \cite{alayrac2022flamingo}, and GPT-4 \cite{gpt4}.
+But even for public datasets such as LAION-2B \cite{laion5b}, it is unclear how design choices during dataset construction, such as the data source or filtering techniques, affect the resulting models.
+While there are thousands of ablation studies for algorithmic design choices (loss function, optimizer, model architecture, etc.), datasets are usually treated as monolithic artifacts without detailed investigation or further improvements.
+Moreover, datasets currently lack the benchmark-driven development process that has enabled the community to produce a steady stream of advances on the model side.
+These issues impede further progress in multimodal learning, as evidenced by recent work showing that public datasets currently do not match the scaling behavior of proprietary alternatives \citep{cherti2022reproducible}.
+A key difficulty for improving datasets is the scarcity of data-centric benchmarks that isolate dataset enhancements from changes to the model.
+
+In this paper, we take a step towards a more rigorous dataset development process via five contributions.
+Our first and central contribution is \textbf{\datanet, a new benchmark for multimodal dataset design}.
+\datanet flips the traditional benchmarking paradigm in machine learning where the dataset is fixed and the research community proposes new training algorithms.
+Instead of a fixed dataset, we hold the training code, model, and computational budget constant so that participants innovate by proposing new training sets.
+To evaluate the quality of a training set, we score the resulting model with a broad testbed of 38 classification and retrieval tasks such as ImageNet \cite{deng2009imagenet}, ImageNetV2 \cite{imagenetv2}, DTD \cite{dtd}, EuroSAT \cite{eurosat}, PatchCamelyon \cite{patchcamelyon}, SUN-397 \cite{sun397}, MSCOCO \cite{mscoco}, and WinoGAViL \cite{bitton2022winogavil}.
+
+\datanet focuses on two key challenges that arise when assembling large training datasets: what data sources to train on, and how to filter a given data source.
+Each challenge corresponds to one track in our benchmark.
+To facilitate the \emph{filtering track}, our second contribution is \textbf{\pool, a dataset of 12.8B image-text pairs collected from Common Crawl}.
+In the filtering track, the goal of participants is to find the best subset of \pool to train on.
+\pool is currently the largest publicly released image-text dataset, exceeding the size of LAION-5B by a factor of $2.5\times$.
+Additionally, we apply explicit content checks and face blurring when constructing \pool to improve the safety of image-text datasets.
+In the second track, \emph{Bring Your Own Data} (\byod), participants can leverage any data source of their choice, as long as the training data does not overlap with our evaluation testbed.
+Taken together, our two tracks provide a controlled environment to better understand dataset curation for multimodal learning.
+
+
+Our third contribution is an investigation of \textbf{scaling trends for dataset design}. 
+In particular, \datanet contains \emph{four} distinct compute and data scales.
+On the data side, the candidate pool for filtering ranges from 12.8M samples to 12.8B samples.
+On the compute side, the training budget scales accordingly from 12.8M to 12.8B samples seen during training.
+This choice of pool size and compute budget leads to the natural baseline of training on the entire candidate pool with a single training pass and no filtering.
+Expressed in GPU hours, the cost of a single training run ranges from 4 to 40,000 GPU hours on the A100 cluster we used for development.
+This 10,000$\times$ range stems from a factor 1,000$\times$ in pool size and another factor $10\times$ from scaling the model size.
+The different scales enable researchers with different resources to participate in our benchmark.
+Moreover, the multi-scale format facilitates studying scaling trends.
+Our results show that the order of several filtering approaches is largely consistent across 
+multiple compute and data scales.
+
+\begin{figure*}[h!]
+    \centering
+    \includegraphics[width=\textwidth]{figures/workflow.pdf}
+    \caption{Participant workflow. A) Participants first choose a scale, {\small \texttt{small}}, {\small \texttt{medium}}, {\small \texttt{large}} or {\small \texttt{xlarge}}, based on their resource constraints (submission to multiple scales is allowed). B) Participants create a candidate dataset, choosing one of two tracks: \textit{filtering}, where only  image-text pairs from \pool are allowed; or \byod, where any data source (including \pool) is permitted. C) Participants train a CLIP model on their candidate pool using a fixed architecture and hyperparameters (Section \ref{sec:training}). D) Participants evaluate the trained model on a suite of diverse downstream tasks (Section \ref{sec:evaluation}) and submit to our leaderboard.}
+    \label{fig:workflow}
+\end{figure*}
+
+
+Our fourth contribution are \textbf{over three hundred baseline experiments} and resulting insights into how dataset curation methods compare.
+Our baselines span basic techniques such as removing small images or non-English captions, querying captions for relevant keywords, filtering based on image embeddings, and applying a threshold on CLIP scores.
+A key result from our baselines experiments is that smaller, more stringently filtered datasets can lead to models that generalize \emph{better} than larger datasets coming from the same pool.
+At the 12.8B scale, our best filtering baseline increases ImageNet zero-shot accuracy by 6.9 percentage points (pp) relative to the unfiltered pool (see \Cref{tab:main}).
+For the \byod track, our initial experiments with multiple data sources find that 109M additional data points (less than 1\% of the pool size) improve the CLIP-filtered subsets of \pool by up to 1.2 pp ImageNet accuracy at the 12.8B scale (see \Cref{tab:byod}). 
+
+Finally, our fifth contribution is \textbf{\ours, a new state-of-the-art multimodal dataset} that can be used as a drop-in replacement for previous image-text datasets such as LAION-2B.
+\ours is a filtered subset of \pool containing 1.4B image-text pairs and demonstrates that improving data curation can yield large performance gains.
+We obtained \ours by combining our two most promising baselines from smaller scale experiments: CLIP score filtering and image-based filtering.
+\ours enables training a CLIP ViT-L/14 model with a compute budget of 12.8B samples to an ImageNet zero-shot accuracy of 79.2\% (see \Cref{tab:tab1}).
+This model, trained on \ours, outperforms a larger CLIP ViT-g/14 model trained on LAION-2B for about $3\times$ longer (34B samples seen), corresponding to a an $9\times$ overall reduction in compute cost.
+Moreover, our model outperforms OpenAI's original CLIP ViT-L/14 by 3.7 percentage points, which is trained with the same compute budget of 12.8B samples as our model.
+We view \ours as only the first new dataset coming out of \datanet and expect that future work will leverage our benchmark to discover further dataset improvements.
+
+We hope that \datanet serves as a starting point for new creative research on dataset curation by making it easier to conduct controlled experiments in a shared experimental setting.
+To enable future work, we publicly release our candidate pools, our tooling for assembling these pools, our filtering baselines, and our code for training and evaluating models at \url{www.datacomp.ai}.
+We present an overview of the participant workflow in Figure \ref{fig:workflow}.
+We believe that our infrastructure will help put research on dataset curation on rigorous empirical foundations, draw attention to this understudied research area, and lead to the next generation of multimodal datasets.
+
+
+\section{Related Work}
+\label{sec:relatedwork}
+Due to space constraints, we discuss work that is closest to \datanet here and refer the reader to Appendix \ref{sec:more-relatedwork} for additional related work.
+
+\paragraph{The effects of data curation.} 
+Classical work considers dataset cleaning and outlier removal \cite{jiang2001two,yu2002findout,rousseeuw2011robust,rousseeuw2018anomaly} to discard samples that may lead to undesirable model bias. A related line of work develops coreset selection algorithms \cite{harpeled2004coresets,agarwal2004approximating,Feldman2011Scalable,pmlr-v37-bachem15,lucic2018gaussian,pmlr-v37-wei15,cohen2017input}, which aim to select data subsets that lead to the same performance as training on the entire dataset.
+These techniques are known to scale poorly to larger data regimes \cite{guo2022deepcore,abbas2023semdedup}, which are critical for modern deep learning algorithms.
+More recent efforts in subset selection often operate on already curated datasets \cite{craig,toneva2018empirical,sener2018active,birodkar2019semantic,coleman2020selection,datadiet} like CIFAR-10, ImageNet or on smaller data regimes (e.g., YFCC-15M \cite{radford2021learning,yfcc100m}).
+These settings often do not reflect newer training paradigms that involve (1) \emph{noisy} image-text pairs instead of category labeled images and (2) large scale datasets (e.g., billions of samples).
+While data-centric investigations have led to community competitions like \textsc{dcbench} \cite{dcbench} and \textsc{DataPerf} \cite{dataperf}, existing benchmarks have likewise operated at small data scales \cite{datacentric}, especially when compared to datasets like LAION-2B \cite{laion5b}, which contains over two billion images.
+\datanet bridges this gap to better align dataset curation algorithms with modern large scale image-text training.
+
+
+There has also been renewed interest in dataset pruning and deduplication.
+\citet{sorscher2022beyond} show that data pruning can be used to outperform traditional power-law scaling trends on ImageNet, but do not consider image-text training or larger datasets.
+\citet{raffel2020exploring} attempt to remove sentence redundancies when creating the C4 corpus. Subsequent work further demonstrated the benefits of deduplication for better language modeling \cite{Lee2021DeduplicatingTD}.
+\citet{rdk+23} introduce CAT filtering for image-text datasets---a rule based system to retain high quality samples. 
+\citet{abbas2023semdedup} introduce SemDeDup, which starts with the CAT-filtered LAION-440M subset, further employing a clustering method to removes semantic duplicates.
+SemDeDup improves training speed; however, the resulting models show similar zero-shot ImageNet performance when compared to models trained on the original dataset.
+At our largest scale, we introduce a pool of 12.8B image-text pairs, which is an order of magnitude larger than the data pools considered in either CAT or SemDeDup.
+Hence, we hope the \datanet benchmark will bootstrap future data-centric exploration at a scale that is unprecedented in non-proprietary research.
+
+
+\paragraph{Large-scale multimodal datasets.} Datasets have been instrumental to build multimodal models like CLIP~\cite{radford2021learning}, Flamingo~\cite{alayrac2022flamingo}, Stable Diffusion ~\cite{rombach2022high}, DALL-E~\cite{ramesh2021zero,ramesh2022hierarchical} and GPT-4 \cite{gpt4}.
+These methods succeeded by training on large, heterogeneous datasets rather than solely through advanced modelling techniques.
+For example, OpenAI's CLIP trains on 400M image-text pairs from the web, roughly $300\times$ the size of ImageNet~\cite{deng2009imagenet}.
+Prior work on scaling image-text datasets also provides promising trends with respect to zero-shot model performance~\cite{jia2021scaling,pham2021scaling}. 
+Additional large scale datasets like FILIP-300M \cite{filip}, FLD-900M \cite{yuan2021florence}, and PaLI-10B \cite{chen2022pali} were constructed to train multimodal models.
+However, many datasets used to train such models (including the dataset for OpenAI's CLIP) are proprietary, making it hard to conduct data-centric investigations.
+
+Even for public image-text datasets like SBU~\cite{sbu}, Flickr30k \cite{flickr30k}, MS-COCO \cite{mscoco}, Conceptual Captions \cite{sharma2018conceptual}, CC12M \cite{changpinyo2021conceptual}, RedCaps \cite{desai2021redcaps}, WIT \cite{srinivasan2021wit}, Shutterstock \cite{nguyen2022quality}, YFCC-100M \cite{yfcc100m}, COYO-700M \cite{coyo700m}, LAION-400M \cite{laion400m}, or LAION-2B \cite{laion5b} little is known about what constitutes a good image-text dataset. Preliminary analysis suggests that different image-text data sources lead to CLIP models with different properties~\cite{nguyen2022quality}. However, previous work is limited to smaller scale data (10-15M examples). 
+Our work provides a testbed for conducting controlled experiments on how different data curation techniques affect models. Our benchmark spans several orders of magnitude in compute and data scale. It includes the largest publicly available collection of image-text pairs, with 12.8B samples.
+\citet{Birhane2021MultimodalDM} examine the LAION-400M dataset and find a plethora of problematic content, including NSFW imagery and racial slurs. In doing so, they center the dangers in web-scale multimodal datasets. In an effort to combat toxicity, we preprocess dataset samples with NSFW models during pool construction and remove flagged content. We also blur faces detected in images to make individuals less recognizable. For more details on our safety preprocessing see Section~\ref{sec:pool}, Appendices~\ref{app:nsfw}~and~\ref{app:face}.
+
+\section{\datanet}
+\label{sec:thecomp}
+
+The goal of \datanet is to place dataset curation on rigorous empirical foundations, making it easier to conduct controlled experiments in a shared experimental setting.
+In contrast to traditional benchmarks where participants iterate on model design and hyperparameter tuning, \datanet asks participants to design datasets that lead to high accuracy under fixed experimental conditions on the modeling side.
+Our benchmark focuses on large image-text datasets and evaluates a new dataset by training a CLIP model on the dataset from scratch \cite{radford2021learning}. 
+To facilitate such investigations, we provide a candidate pool of uncurated image-text pairs crawled from the public internet.
+
+Our benchmark offers two tracks: one where \users must use only samples from the pools we provide, and another where \users can use external data in addition to samples from our pool.
+Moreover, \datanet is structured to accommodate \users with diverse levels of computational resources: each track is broken down into four scales with varying compute requirements.
+
+In this section, we discuss several design considerations including the benchmark tracks, experimental details for training, datasets used for evaluation, and the rules of the competition.
+
+
+\subsection{Competition design}
+The first question when designing a datasets benchmark is how to enable meaningful comparisons between different datasets.
+In numerous areas of machine learning, larger datasets lead to better performance~\cite{krizhevsky2012imagenet,kaplan2020scaling,jia2021scaling,pham2021scaling,chinchilla,cherti2022reproducible,gpt3,radford2021learning,radford2022robust}.
+Hence a natural starting point for a dataset benchmark would be to compare datasets of the same size only.
+While intuitive, this approach is flawed when it comes to contemporary large training sets for multimodal models.
+In particular, controlling the dataset size ignores the creation process behind the dataset and thereby fails to control for the actually relevant quantities: pool size and training compute.
+To illustrate this point, we now briefly summarize how state-of-the-art multimodal datasets are assembled.
+
+At a high level, assembling a dataset such as LAION-2B consists of two steps.
+The first step is to identify one or multiple \emph{data sources}, e.g., a web crawl such as Common Crawl or a widely used website such as Reddit.
+The data source should provide many training examples covering a broad distribution and come with supervision signals such as nearby text.
+After identifying a suitable set of data sources, the next step is to \emph{filter} the data source to remove data points with low-quality annotations or other deficiencies (blurry images, etc.).
+The final dataset then contains all examples from the data sources that pass the data curation filters.
+
+An important aspect of this dataset creation process is that \emph{the final dataset size is a design choice} and not fixed ahead of time by the data sources.
+In particular, the dataset designer faces a trade-off between the dataset size (more data points are better) and data quality (higher quality data points are better).
+Hence the true data constraint in web-scale training set curation is not the size of the final dataset, but the size of the \emph{candidate pool}.
+To make \datanet a realistic benchmark for dataset curation that can inform future dataset projects, we therefore fix the candidate pool participants work with in the filtering track, but otherwise give participants full control over the training set size.
+
+Besides the size of the candidate pool, the other practically relevant constraint when training a model is the compute cost.
+In order to put training sets of different size on equal footing, we specify the training compute in terms of the total \emph{number of samples seen} during training, not in terms of how many passes (epochs) the training run makes over the training set.
+As a concrete example, consider the 12.8B candidate pool, for which we fix a compute budget of 12.8B examples seen.
+A participant may choose to build a training set $A$ with 3.2B data points by removing 75\% of the candidate pool.
+The \datanet training code would then make four passes over this training set $A$.
+Alternatively, a participant may filter more aggressively and end up with a dataset $B$ containing only 1.6B examples (i.e., removing 87.5\% of the candidate pool).
+In this case, the training code would make eight passes over training set $B$ so that the total amount of training compute remains constant (12.8B samples seen).
+A key result from our baselines experiments in \datanet is that smaller, more stringently filtered datasets can lead to models that generalize \emph{better} than larger datasets coming from the same pool of images when the total amount of training compute is constant.
+
+This realistic, pool-centric perspective on dataset curation is one of they key design decisions in \datanet.
+We now briefly review the other design decisions such as the division into two competition tracks, our multi-scale structure and the construction of the candidate pool.
+Additional design decisions including our training and evaluation protocols are discussed in Sections \ref{sec:training} and \ref{sec:evaluation}.
+
+\paragraph{Competition tracks.} As mentioned above, the two key steps in assembling a training dataset are filtering an existing pool of data \cite{laion400m, laion5b, coyo700m} and aggregating different data sources \cite{dave2020tao, deng2009imagenet}.
+To compare methods for these two approaches separately, \datanet has two tracks: \textit{filtering}, where \users must select a subset of the samples from \pool, and \textit{Bring Your Own Data} (\byod), where \users are allowed to use any source of external data. The tracks are described in Sections \ref{sec:pool} and \ref{sec:byod}, respectively. 
+
+% GMACs estimates from https://github.com/LAION-AI/CLIP_benchmark/blob/main/probe_benchmark/clip_table_2.csv
+\begin{table}
+\rowcolors{2}{white}{light-light-gray}
+\caption{Experimental configuration for each scale. The number of samples seen during training at the largest scale is chosen to match the experimental setup from \citet{radford2021learning}. Training compute is measured in the total number of multiply-accumulate operations (MACs).}
+\setlength\tabcolsep{8.5pt}
+\renewcommand{\arraystretch}{1.1}
+\small
+\centering
+\begin{tabular}{llcc}
+\toprule
+Scale  & Model    & Train compute (MACs) & Pool size and \# samples seen\\\midrule
+{\small \texttt{small}}    & ViT-B/32 & $9.5\times 10^{16}$ & 12.8M\\
+{\small \texttt{medium}}   & ViT-B/32 & $9.5\times 10^{17}$ & 128M  \\
+{\small \texttt{large}}	& ViT-B/16 & $2.6\times 10^{19}$ & 1.28B   \\
+{\small \texttt{xlarge}}	& ViT-L/14 & $1.1\times 10^{21}$ & 12.8B \\
+\bottomrule
+\end{tabular}
+\label{tab:scale-hparams}
+\end{table}
+
+
+\paragraph{Competition scales.} To facilitate the study of scaling trends and accommodate participants with various levels of computational resources, we structure \datanet using four scales of compute: {\small \texttt{small}}, {\small \texttt{medium}}, {\small \texttt{large}} and {\small \texttt{xlarge}}. Each new scale increases the number of samples seen during training by 10$\times$ (from 12.8M to 12.8B samples seen), and the pool we provide by the same factor (from 12.8M samples to 12.8B samples). Table \ref{tab:scale-hparams} describes the experimental configuration used for training at each scale.
+
+\paragraph{Preprocessing and safety.} Creating a dataset from a noisy web source such as Common Crawl involves many design decisions, e.g., whether one should de-duplicate images, keep only English captions, or restrict the image sizes.
+We decided to grant participants a high degree of autonomy and kept our initial preprocessing of \pool to a minimum, leaving these design decisions open for exploration. 
+Our only initial preprocessing steps are to eliminate images that appear in downstream evaluation datasets or are flagged due to safety considerations.
+For the latter, we take steps to eliminate illegal and explicit content and to protect the privacy of individuals.
+Specifically, we remove unsafe images and captions with automated filters and obfuscate faces in the candidate images we provide. 
+Section \ref{sec:pool} describes these steps in more detail.
+
+\paragraph{Competition rules.} We include comprehensive rules in Appendix~\ref{sec:full-competition-rules}. 
+Briefly, for the filtering track, we do not allow usage of test images from our evaluation suite, but do allow users to use the training images for their filtering algorithms.
+For \byod, we like-wise allow the use of training sets, but lift the restriction that \pool must be used.
+
+\subsection{\pool generation}
+\label{sec:pool}
+We construct \pool, a large-scale dataset of image-text pairs sourced from Common Crawl.\footnote{\url{https://commoncrawl.org/}}
+Our pool construction pipeline has four major steps: URL extraction and data download, NSFW detection, evaluation test set deduplication, and face blurring. We additionally provide metadata (e.g., CLIP features) for each sample in the pool.
+Starting from the {\small \texttt{xlarge}} \pool, we take successive random subsets to create {\small \texttt{large}}, {\small \texttt{medium}}, and {\small \texttt{small}} \pool (e.g., {\small \texttt{medium}} is a subset of {\small \texttt{large}}).
+An overview of the effect of each step in our pool generation pipeline in shown in Figure \ref{fig:data_pipeline}.
+
+\begin{figure*}
+    \centering
+    \includegraphics[width=0.95\linewidth]{figures/appx-datapipeline.pdf}
+    \caption{Data funnel going from potential samples found in Common Crawl to the  13.1B image-text pairs that were suitable for \pool. We sampled uniformly 12.8B datapoints for the \small{\texttt{xlarge}} \pool.}
+    \label{fig:data_pipeline}
+\end{figure*}
+
+
+\paragraph{Extracting urls and dowloading data.} We first use cc2dataset\footnote{\url{https://github.com/rom1504/cc2dataset/}}, which utilizes Apache Spark~\cite{zaharia2016apache}, to 1) extract image urls with nonempty alt-text from all Common Crawl dumps from 2014 to 2022 and 2) deduplicate and randomly shuffle the resulting set of image url, alt-text pairs. Our processing results in in $\sim$88B possible samples. Not all samples are downloadable due to dead links; other samples are not suitable for inclusion in \pool due to NSFW content or overlap with our evaluation sets.
+Hence, we attempt to download $\sim$40B samples using img2dataset\footnote{\url{https://github.com/rom1504/img2dataset/}} resulting in $\sim$16.8B successfully downloaded image-text pairs. 
+For details, see Appendix \ref{app:parse-cc}.
+
+\paragraph{NSFW preprocessing.}
+Since Common Crawl is a snapshot of the internet, we require strict preprocessing to remove unsafe content. We first use Detoxify~\cite{Detoxify} to prune samples that contain unsafe text (e.g., obscene, sexually explicit, or threatening language). 
+We also employ an image classifier to discard explicit visual content. To do so, we train a classifier on CLIP ViT-L/14 \cite{radford2021learning} features, using the NSFW dataset used in LAION-5B~\cite{laion5b}. We validate our classifier against the Google commercial image safety API. See Appendix \ref{app:nsfw} for details.
+Overall,  $\sim$19\% of image-text pairs are considered NSFW, taking our pool of $\sim$16.8B downloads to $\sim$13.6B samples.
+
+\paragraph{Evaluation set deduplication.}
+To prevent accidental overfitting to certain test sets in our evaluation suite, we perform a thorough near-duplicate removal between the candidate pool and our evaluation sets, using a state-of-the-art image deduplication model~\cite{Yokoo2021Dedup}. Appendix \ref{app:dedup} contains additional details.
+The model flags $\sim$3\% of the 16.8B images as near-duplicates, reducing the $\sim$13.6B pool to $\sim$13.1B samples.
+From here we select a random subset to get the {\small \texttt{xlarge}} pool of 12.8B samples.
+
+\paragraph{Face detection \& blurring.} To protect the privacy of individuals, we detect and blur faces from images in our pool using a face detector~\cite{guo2021sample}. As observed by \citet{yang2022study}, obfuscating faces has little impact on model performance, as we also observe in our experiments (Appendix \ref{app:face}).
+
+\paragraph{Pool metadata.}
+Motivated by the LAION-400M data curation procedure, which employs similarity scores between CLIP image and text features, we compute additional metadata for each sample in \pool. 
+To bootstrap \users in their exploration of filtering algorithms, we provide image url, alt-text, original image width and height, CLIP image and text features, and CLIP image-text similarity scores.
+We also release a SHA256 hash of each image to guard against data poisoning in subsequent \pool downloads \cite{carlini2023poisoning}.
+For additional details see Appendix \ref{app:metadata}.
+Metadata is meant to ease the computational burden on \users; however, we encourage exploring curation techniques that go beyond the provided metadata.
+
+
+
+
+\subsection{Bring your own data (\byod)}
+\label{sec:byod}
+
+While \pool can be used to study different filtering techniques, state-of-the-art models are often trained on heterogeneous data pools from different sources.
+For instance, the Flamingo model~\cite{alayrac2022flamingo} uses both curated data from multimodal massive web (M3W) and the ALIGN dataset~\cite{jia2021scaling}.
+To facilitate non-proprietary research on curating data from many sources, we instantiate a separate track in \datanet to allow \users to combine multiple data streams.
+For example, \users could construct a training set from CC12M~\cite{changpinyo2021conceptual}, YFCC100M~\cite{yfcc100m}, and data sources they label themselves. In Section \ref{sec:byod-baselines} and Appendix \ref{app:byod} we describe our exploration of using other public datasets.
+
+\subsection{Training}
+\label{sec:training}
+
+We create a common experimental setting that enables controlled and comparable experiments by fixing the training procedure (i.e., model architecture, optimizer, loss, hyperparameters, etc.) and compute at each scale. We closely follow the training recipe used to train state-of-the-art CLIP models from \citet{radford2021learning}, 
+training models from scratch with a contrastive objective over images and captions.
+Given a set of image-caption pairs, we train an image encoder and a text encoder such that the similarity between the representations of images and their corresponding text is maximized relative to unaligned pairs.\footnote{More precisely, given a batch of data $\{(x_1,y_1),...,(x_B,y_B)\}$ with images $x$ and captions $y$, we train the image encoder $g$ and text encoder $v$ with the loss $\ell=\frac{1}{2}\sum_{i=1}^B \frac{\sigma_{ii}}{\sum_{j=1}^B\sigma_{ij} } + 
+\frac{1}{2}\sum_{i=1}^B \frac{\sigma_{ii}}{\sum_{j=1}^B\sigma_{ji}}
+$, where $\sigma_{ij} = \exp{\langle g(x_i), h(y_j) \rangle}$. 
+We also use a learnable temperature parameter as in \citet{radford2021learning}.}
+
+
+For each scale, we use a fixed model architecture and set of hyperparameters. We pick Vision Transformers (ViTs) \cite{dosovitskiy2021an} as the image encoder, considering the better scaling trends observed by \citet{radford2021learning} compared to ResNets \cite{he2016deep}. The size of the model varies with the scale, using a ViT-B/32 for the {\small \texttt{small}} and {\small \texttt{medium}} scales, a ViT-B/16 for the {\small \texttt{large}} scale and ViT-L/14 for the {\small \texttt{xlarge}} scale. Models are trained for a fixed number of steps determined by the scale (Table \ref{tab:scale-hparams}), using the OpenCLIP repository \cite{ilharco2021openclip}. We closely follow the training procedure from \citet{radford2021learning}, using the Adam optimizer \cite{kingma2014adam} with decoupled weight decay \cite{loshchilov2018decoupled} on all weights except gains or biases with $\beta_1=0.9$, $\beta_2=0.98$ and weight decay of $0.2$. For the {\small \texttt{xlarge}} scale, we use $\beta_2=0.95$ to prevent instability. The models are trained with automatic mixed precision and a cosine annealing learning rate schedule \cite{loshchilov2016sgdr}. For the {\small \texttt{small}} scale, our internal training runs took four hours on one A100 GPU, and for the {\small \texttt{xlarge}} scale, 81 hours on 512 GPUs. Additional details including other scale-specific hyperparameters are shown in Appendix \ref{app:train}.
+
+
+\subsection{Evaluation}
+\label{sec:evaluation}
+
+We evaluate on an extensive suite of 38 image classification and retrieval tasks. We also provide an in-depth analysis on two fairness-related datasets, detailed in Section~\ref{sec:analysis} and Appendix~\ref{app:fairness}.
+Image classification datasets range from satellite imagery recognition to classifying metastatic tissues from histopathologic scans, including (with some overlap): 22 of the datasets evaluated in \citet{radford2021learning}, 6 ImageNet distribution shifts, 11 datasets from the Visual Task Adaptation Benchmark (VTAB) \cite{vtab}, and 3 datasets from the WILDS benchmark \cite{wilds2021,sagawa2022extending}.
+Retrieval datasets include the Flickr30k \cite{flickr30k} and MSCOCO image and text retrieval datasets \cite{mscoco}, as well as the WinoGAViL commonsense image-text associations task \cite{bitton2022winogavil}.
+To aggregate results over all evaluation tasks, we average the preferred metric for each task.
+As discussed in Section \ref{sec:pool}, we remove all test set images from the pool we provide to avoid contamination.
+
+\datanet adopts a zero-shot evaluation protocol, which means models are tested without training on the evaluation tasks. This approach is computationally efficient and measures a model's ability to perform well without any additional training, in contrast to methods such as linear probing or end-to-end fine-tuning. As an additional validation step, we find a strong correlation (${>}0.99$) between performance using a linear probe and that in a zero-shot setting, as seen in Appendix Figure \ref{fig:linear-probes}.
+Additional details are in Appendix~\ref{sec:app-eval}.
+
+\section{Baselines}
+\label{sec:baselines}
+
+
+\subsection{Filtering baselines}
+
+We study six simple filtering methods for the filtering track; see \Cref{sec:app-baselines-pool} for further details.
+
+\paragraph{No filtering.} We simply use the entire pool as the subset, without any filtering. Since each pool size is equal to the sample budget, training consists of one pass over the data.
+
+\paragraph{Random subsets.} To isolate the effects of increasing the compute budget from increasing the dataset size, we form subsets consisting of 1\%, 10\%, 25\%, 50\% and 75\% of the pool chosen at random. 
+
+\paragraph{Basic filtering.} We consider a number of simple filtering operations inspired by \citet{laion400m} and \citet{coyo700m}: filtering by \emph{language} (only English captions, using either fasttext~\citep{joulin2017bag} or cld3~\cite{cld3});  filtering by \emph{caption length} (over two words and 5 characters); and filtering by \emph{image size} (smaller dimension above 200 pixels and aspect ratio below 3). We also experiment with combining the first two methods (language + caption length) and all three (language + caption length + image size). Unless otherwise specified, ``basic'' refers to filtering by fasttext language, caption length, and image size.
+
+\paragraph{CLIP score and LAION filtering.} We experiment with the main filtering strategy employed by LAION, where we take only examples where the cosine similarity score between CLIP image and text embeddings exceeds a pre-defined threshold. We investigate a range of thresholds and two OpenAI CLIP models for computing the scores: the ViT-B/32 model (as in LAION) and the ViT-L/14. Furthermore, we combine CLIP score thresholds and English filtering using cld3 in order to reproduce the LAION-2B filtering scheme. \Cref{tab:filtering_thresholds} in \Cref{sec:app-baselines-pool} summarizes the different CLIP score threshold configurations. 
+
+\paragraph{Text-based filtering.} We select examples that contain text overlapping with ImageNet class names, which serves as a proxy for relevance to downstream tasks. Specifically, we select English captions (according to fasttext) that contain words from synsets corresponding to classes in ImageNet-21K or ImageNet-1K~\citep{deng2009imagenet}.
+
+\paragraph{Image-based filtering.} We select a subset of examples whose visual content overlaps with ImageNet classes. After applying language (fasttext) and caption length filtering on the data, we cluster the image embeddings extracted from the OpenAI ViT-L/14 model of the candidate pool into 100K groups using Faiss~\citep{johnson2019billion}. We then find the nearest neighbor cluster center for every ImageNet training example, and keep examples whose corresponding cluster center is a nearest neighbor to at least one ImageNet image. We apply this procedure using either ImageNet-21K (14M images) or ImageNet-1K (1.2M images), forming two subsets.
+
+\subsection{\byod baselines} \label{sec:byod-baselines}
+We experiment with multiple external data sources, including four moderately sized datasets (10 to 58M samples) studied by \citet{nguyen2022quality}---CC12M \cite{changpinyo2021conceptual}, YFCC15M \cite{yfcc100m,radford2021learning}, RedCaps \cite{desai2021redcaps} and Shutterstock \cite{nguyen2022quality}---and the larger LAION-2B~\cite{laion5b}. Additional experiments, along with more details about the data sources are provided in Appendix \ref{app:byod}. We consider these data sources as they are and do not perform additional preprocessing. We also present experiments  combining some of the data sources (using only the external datasets, or in addition to data from our pool).
+
+
+\begin{table*}
+\rowcolors{3}{light-light-gray}{white}
+\caption{Zero-shot performance for select baselines in the \textit{filtering} track. On all scales, various filtering strategies lead to better performance than using the entire pool without filtering. The intersection between imaged-based and CLIP score strategies performs well on most tasks and scales. For all metrics, higher is better (see Appendix \ref{sec:app-eval} for details). $\cap$ denotes the intersection between filtering strategies.
+}
+\setlength\tabcolsep{5pt}
+\renewcommand{\arraystretch}{1.1}
+\small
+\centering
+
+\resizebox{\textwidth}{!}{
+\begin{tabular}{wlccccccc}
+\toprule
+ &    & Dataset & Samples &  & ImageNet &  &  & Average over \\% & Average\\
+\multirow{-2}{*}{Scale} & \multirow{-2}{*}{Filtering strategy} & size & seen &  \multirow{-2}{*}{ImageNet} & dist. shifts & \multirow{-2}{*}{VTAB}  & \multirow{-2}{*}{Retrieval} & 38 datasets \\\midrule% & (clean)\\midrule
+ \cellcolor{white} & No filtering & 12.8M  & 12.8M& 0.025 & 0.033 & 0.145 & 0.105 &  0.132 \\% & 0.104\\ 
+\cellcolor{white} & Basic filtering & 3M  & 12.8M& 0.030 & 0.040 & 0.149 & 0.111 & 0.137 \\% & 0.107\\
+\cellcolor{white}& Text-based & 3.2M  & 12.8M& 0.046 & 0.052 & 0.169 & \underline{0.112} & 0.156 \\% & 0.128\\
+\cellcolor{white}& Image-based & 3M  & 12.8M & 0.043 & 0.047 & 0.178 & \underline{0.112} & 0.158 \\% & 0.123\\
+\cellcolor{white}& LAION-2B filtering& 1.3M  & 12.8M& 0.031 & 0.040 & 0.136 & 0.085 & 0.133 \\% & 0.113\\
+\cellcolor{white}& CLIP score (L/14 30\%) & 3.8M  & 12.8M& \underline{0.051} & \underline{0.055} & \underline{0.190} & 0.108 & \underline{0.172} \\% & \underline{0.138}\\
+\cellcolor{white}\multirow{-7}{*}{{\small \texttt{small} }}& Image-based $\cap$ CLIP score (L/14 30\%) & 1.4M  & 12.8M & 0.039 & 0.045 & 0.162 & 0.089 & 0.144 \\\midrule% & 0.115\\ \midrule
+\cellcolor{white} & No filtering & 128M  & 128M & 0.176 & 0.152 & 0.259 & 0.174 & 0.254 \\% & 0.244\\
+\cellcolor{white}& Basic filtering & 30M  & 128M & 0.226 & 0.193 & 0.284 & 0.192 & 0.280 \\% & 0.271\\
+\cellcolor{white}& Text-based  & 31M  & 128M & 0.255 & 0.215 & 0.328 & 0.183 & 0.301 \\% & 0.292\\
+\cellcolor{white} & Image-based  & 29M  & 128M & 0.268 & 0.213 & 0.319 & \underline{0.193} & 0.307 \\% & 0.295\\
+\cellcolor{white} & LAION-2B filtering & 13M  & 128M & 0.230 & 0.198 & 0.307 & 0.170 & 0.287 \\% & 0.276\\
+\cellcolor{white} & CLIP score (L/14 30\%) & 38M  & 128M & 0.273 & 0.230 & 0.338 & 0.183 & \underline{0.323} \\% & \underline{0.319}\\
+\cellcolor{white} \multirow{-7}{*}{{\small \texttt{medium}}} & Image-based $\cap$ CLIP score (L/14 30\%) & 14M  & 128M & \underline{0.297} & \underline{0.239} & \underline{0.346} & 0.170 & \underline{0.323} \\\midrule%  & 0.317\\ \midrule
+\cellcolor{white}  & No filtering & 1.28B  & 1.28B & 0.459 & 0.378 & 0.426 & 0.305 & 0.428\\%  & 0.441\\
+\cellcolor{white} & Basic filtering & 298M  & 1.28B & 0.516 & 0.423 & 0.446 & 0.353 & 0.448 \\% & 0.458\\
+\cellcolor{white} & Text-based & 317M  & 1.28B & 0.561 & 0.465 & 0.465 & 0.352 & 0.466 \\% & 0.484\\
+\cellcolor{white} & Image-based & 293M & 1.28B  & 0.572 & 0.454 & 0.483 & 0.353 & 0.471 \\% & 0.487\\
+\cellcolor{white} & LAION-2B filtering & 130M & 1.28B  & 0.553 & 0.453 & 0.510 & 0.365 & 0.491 \\% & 0.509\\
+\cellcolor{white} & CLIP score (L/14 30\%) & 384M & 1.28B  & 0.578 & 0.474 & 0.538 & 0.342 & 0.520 \\% & 0.542\\
+\cellcolor{white} \multirow{-7}{*}{{\small \texttt{large}}} & Image-based $\cap$ CLIP score (L/14 30\%) & 140M & 1.28B  & \underline{0.631} & \underline{0.508} & \underline{0.546} & \underline{0.369} & \underline{0.527} \\\midrule % & \underline{0.550}\\ \midrule
+ \cellcolor{white} & No filtering & 12.8B  & 12.8B & 0.723 & 0.612 & 0.611 & 0.441 & 0.611 \\% & 0.648\\
+\cellcolor{white} & LAION-2B filtering & 1.3B & 12.8B  & 0.755 & 0.637 & 0.624 & \underline{0.503} & 0.627 \\% & 0.666\\
+\cellcolor{white} & CLIP score (L/14 30\%) & 3.8B & 12.8B  & 0.764 & 0.655 & 0.643 & 0.468 & 0.641 \\% & 0.681\\
+\cellcolor{white} \multirow{-4}{*}{{\small \texttt{xlarge}}}  & Image-based $\cap$ CLIP score (L/14 30\%) & 1.4B & 12.8B  & \underline{0.792} & \underline{0.679} & \underline{0.652} & 0.489 & \underline{0.653} \\% & \underline{0.695}\\ 
+\bottomrule
+\end{tabular}}
+\label{tab:main}
+\end{table*}
+
+\section{Results and discussion}\label{sec:analysis}
+
+\subsection{Building better datasets}
+
+\paragraph{Main results.} Our key results are in Table \ref{tab:main}. Most notably, the intersection between image-based filtering and CLIP score filtering taking the top 30\% examples with highest scores using a ViT-L/14 model excels on most tasks. The exception is for the {\small \texttt{small}} scale and the retrieval datasets, where other filtering approaches perform better.\footnote{\citet{cherti2022reproducible} also observe that models rank differently on classification and retrieval tasks.} Furthermore, other filtering strategies like basic, CLIP score, image-based, text-based filtering show better downstream performance when compared to no filtering.
+While Table \ref{tab:main} shows a summary of our key results, we present a much larger suite of experiments in Appendix~\ref{sec:app-more-plots}.
+
+
+\paragraph{\datanet leads to better image-text datasets.}
+We hope \datanet catalyzes the search for the next generation of multimodal datasets. Towards this end, we contribute \ours, which is a direct result of the \datanet benchmark workflow. \ours is the output from the Image-based $\cap$ CLIP score (L/14 30\%) baseline filter at the {\small \texttt{xlarge}} scale of the filtering track.
+Our dataset is comprised of 1.4B samples, which is \emph{smaller} than the LAION-2B dataset with 2.3B samples.
+Additionally, \ours is built from a smaller pool than the one used to create LAION-2B, which means direct comparisons are likely skewed in favor of LAION-2B.
+Nevertheless, a CLIP L/14 trained on \ours outperforms the LAION-2B competitor by 6.1 percentage points on ImageNet as seen in Table \ref{tab:tab1}. Moreover, training on \ours improves ImageNet accuracy by 3.7 percentage points over OpenAI's ViT-L/14 trained with the same compute budget. These results underscore the impact that \datanet can make and provide a promising foundation upon which \users can build.
+
+
+\begin{table*}
+\rowcolors{3}{light-light-gray}{white}
+\setlength\tabcolsep{4pt}
+\renewcommand{\arraystretch}{1.1}
+\small
+\centering
+\caption{Zero-shot performance for select baselines in the \byod track. External data sources  can be effective in isolation or in combination with CommonPool. Moreover, upsampling external curated sources can improve performance.
+}
+\resizebox{\textwidth}{!}{
+\begin{tabular}{llccccccc}
+\toprule
+\multirow{2}{*}{Scale} & \multirow{2}{*}{Data source}   & Dataset  & Samples & \multirow{2}{*}{ImageNet} & ImageNet & \multirow{2}{*}{VTAB} & \multirow{2}{*}{Retrieval} & Average over \\%  & Average\\
+& & size & seen & & dist. shifts &  & & 38 datasets \\\midrule% & (clean)\\\midrule
+\cellcolor{white} & CC12M & 10M  & 128M  & 0.245 & 0.189 & 0.283 & 0.206 & 0.266 \\% & 0.257\\
+\cellcolor{white} & YFCC15M & 15M & 128M  & 0.232 & 0.137 & 0.263 & 0.174 & 0.251 \\% & 0.239\\
+\cellcolor{white} & RedCaps & 11M & 128M   & 0.237 & 0.166 & 0.271 & 0.150 & 0.261 \\% & 0.257\\
+\cellcolor{white} & Shutterstock & 58M  & 128M  & 0.342 & 0.209 & 0.364 & \underline{0.248} & 0.323 \\% & 0.324\\
+\cellcolor{white} & 4 external sources & 109M & 128M  & \underline{0.378}	& 0.262 & 	0.392 & 0.210 & 	0.348 \\
+\cellcolor{white} & \pool, CLIP score filter & 38M  & 128M &  0.273 & 0.230 & 0.338 & 0.183 & 0.323 \\% & \underline{0.319}\\
+\cellcolor{white}  \multirow{-8}{*}{{\small \texttt{medium}}} &    \quad + 4 external sources & 147M  & 128M  & 0.372 & \underline{0.269} & \underline{0.401} & 0.203 & \underline{0.357} \\% & 0.552\\
+% & 0.542\\
+\midrule % & \underline{0.349}\\\midrule
+\cellcolor{white}  & LAION-2B & 2.3B & 1.28B  & 0.585	& 0.472	& 0.504	& \underline{0.399}	& 0.505 \\% & 0.527\\ 
+\cellcolor{white} & \pool, CLIP score filter & 0.4B & 1.28B  &  0.578 & 0.474 & 0.538 & 0.342 & 0.520 \\% & 0.542\\
+\cellcolor{white} &    \quad + 4 external sources & 0.5B  & 1.28B  & 0.609 & 0.508 & 0.546 & 0.303 & 0.525 \\% & 0.552\\
+\cellcolor{white} \multirow{-4}{*}{{\small \texttt{large}}}&    \quad + 4 external sources (upsampled 2x) & 0.5B  & 1.28B  & \underline{0.621} & \underline{0.509} & \underline{0.547} & 0.315 & \underline{0.530} \\ % & \underline{0.558}
+\midrule
+\cellcolor{white} & LAION-2B & 2.3B  & 12.8B   & 0.757 & 0.631 & 0.611 & \underline{0.502} & 0.612 \\% & 0.655\\ 
+\cellcolor{white} & \pool, CLIP score filter & 3.8B & 12.8B  & 0.764 & 0.655 & \underline{0.643} & 0.468 & \underline{0.641} \\% & \underline{0.681}\\
+\cellcolor{white} \multirow{-3}{*}{{\small \texttt{xlarge}}} & \quad + 4 external sources (upsampled 6x) & 3.9B  & 12.8B & \underline{0.776} & \underline{0.671} & 0.633 & 0.410 & 0.638 \\% & \underline{0.681}\\
+\bottomrule
+\end{tabular}}
+\label{tab:byod}
+\vspace{3pt}
+
+\end{table*}
+
+
+
+\paragraph{External data sources can improve performance.} Table \ref{tab:byod} shows results for several baselines in the \byod track.
+Compared to the best baselines in the filtering track, training on each external data source separately for the {\small \texttt{medium}} scale performs worse, but using all four sources together significantly improves accuracy, especially on ImageNet. 
+At the {\small \texttt{large}} scale, combining CLIP-filtered data from the filtering track with external data from the four sources further boosts ImageNet accuracy by up to 4.3 percentage points.
+This approach also surpasses using LAION-2B.  
+In Appendix \ref{app:byod} we further examine the external data sources and show additional experiments.
+
+
+\paragraph{English filtering is helpful but not necessary.}
+Given that the prompts used in downstream tasks are in English, a natural question is how critical is English filtering for achieving good performance. We try filtering our pool by removing non-English captions, with both cld3 and fasttext as language detectors. Although the two vastly differ in percentage of English captions detected (20\% and 50\% respectively), filtering with both of them results in similar performances at all scales.  
+For basic filtering, English filtering is a key component in our best performing baselines (see Appendix \ref{sec:app-more-plots}).
+On the other hand, English filtering is not necessary to achieve good performance. When using English filtering in combination with CLIP score filtering, performance stays the same or decreases at all scales.
+Figure~\ref{fig:clip_english} in the appendix suggests that CLIP score filtering implicitly does some English filtering, which may be a result of the CLIP models being trained on English filtered data \cite{radford2021learning}.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{figures/clip_threshold.pdf}
+    \caption{Performance of random subsets (dotted line) and CLIP score filtering (solid line) when varying the subset size. When taking random subsets larger subsets are always better, but other filtering functions such as CLIP score perform best with subsets of intermediate size.}
+    \label{fig:clip-th}
+\end{figure}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=.95\linewidth]{figures/train_samples_medium.pdf}
+    \caption{Performance as a function of the number of training samples from the {\small\texttt{medium}} scale. There is a significant variance in accuracy even when accounting for the size of the training set, suggesting that size is not the only determining factor of the quality of a dataset. Results for additional scales are shown in Appendix Figure \ref{fig:training-samples-extra}.}
+    \label{fig:training-samples}
+\end{figure}
+
+
+\paragraph{Trade-off between data diversity and repetition.}
+When we have large pools of data, is it useful to see samples more than once during training?
+In Figure \ref{fig:clip-th}, we show that randomly selecting subsets of the pool typically has little effect or degrades performance; when only small fractions are used, performance drops substantially. 
+In contrast, when filtering with CLIP scores, the optimal training set comes from selecting $\sim$30\% of the pool with the highest scores.
+The difference in performance between filtering with CLIP scores and using random subsets while using the same number of training samples again highlights the importance of different strategies for selecting samples.
+
+
+
+
+\subsection{\datanet design analyses}
+
+\paragraph{\pool and LAION are comparable with the same filtering.} To validate our pool construction, we show that we can build datasets comparable to LAION-2B by employing their filtering technique on our pool.
+LAION-2B selects all samples where the caption is in English and the cosine similarity score from a trained ViT-B/32 CLIP model is above 0.28. We compare this filtering approach on our pool using the same number samples, 130M samples at the {\small \texttt{large}} scale.
+Our experiments show that the different data sources perform comparably when using the same filtering strategy: 55.3\% vs 55.7\% accuracy on ImageNet, and 0.491 vs 0.479 average performance over our evaluation sets using our pool and LAION-2B, respectively.
+
+
+\paragraph{Training set size alone does not explain performance.}
+We find a significant variation in accuracy even when accounting for the size of the filtered training set at a given scale. As shown in Figure \ref{fig:training-samples}, different choices of filtering can substantially impact performance, even when the size of the resulting dataset is comparable and the scale is fixed. For example, cld3 English filtering and CLIP score top 20\% are almost the same size, yet the CLIP score approach performs substantially better at all scales.
+
+
+
+\paragraph{Consistency across scales.} We find that the ranking between filtering strategies is typically consistent across different scales. This is illustrated in Figure~\ref{fig:scaling-scatter}, which shows that the baselines at {\small \texttt{small}} and {\small \texttt{medium}} scales are positively correlated. Moreover, as shown in Table \ref{tab:correlation} in the appendix, the rank correlations of performance is high, between 0.74 and 0.90 for different scale pairs.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{figures/scaling_scatter_mini.pdf}
+    \caption{Correlation between performance at {\small \texttt{small}} and {\small \texttt{medium}} scales for various filtering strategies. The trends suggest that experiments at smaller scales can serve as useful guides for larger scales. Results for additional scales are shown in Appendix Figure \ref{fig:scaling-scatter-full}.
+    }
+    \label{fig:scaling-scatter}
+\end{figure}
+
+\paragraph{Consistency across training hyperparameters.}
+One potential concern is that modifying training hyperparameters changes the relative ordering of different data curation methods in terms of downstream performance.
+To test this, we examine the effect of increasing the number of training steps in {\small \texttt{small}} filtering track baselines by 10$\times$.
+We find a rank correlation of 0.71 on zero-shot average performance.
+Though varying training hyperparameters can change the optimal filtering method, these initial experiments suggest that the ordering is relatively stable. For more information see Appendix \ref{app:steps}.
+
+\subsection{Evaluation trends}
+\label{sec:eval-trends}
+\paragraph{ImageNet accuracy is indicative, but not the complete picture.} Similarly to \citet{kornblith2019better}, in Appendix Figure~\ref{fig:imagenet-vs-all} we find that ImageNet performance is highly correlated with the average performance across all datasets we study, with an overall correlation of 0.99 using the full evaluation suite.\footnote{Note that unlike \citet{kornblith2019better} we evaluate zero-shot performance rather than transfer learning.} However, ImageNet performance is not representative of all evaluation tasks, as the correlation between ImageNet accuracy and accuracy on other individual datasets varies substantially, in some cases even exhibiting a negative correlation, as discussed in Appendix \ref{sec:app-more-plots}.
+
+\paragraph{Robustness and fairness.} While typical models trained on a target task suffer large performance drops under data distribution shift, zero-shot CLIP models exhibit consistently strong performance across a wide range of distributions \cite{radford2021learning}.
+In Appendix Figure \ref{fig:robustness}, we show that models trained with data from our pool are more robust to distribution shift than ImageNet-trained models trained to the same ImageNet accuracy from \citet{taori2020measuring}'s testbed.
+Examining geographic diversity, we find that our models are better than ImageNet-trained models, but fall short of models fine-tuned on diverse curated datasets (see Appendix Figure~\ref{fig:robustness_diversity}).
+We also perform a face classification analysis and identify demographic biases in our models: notably, introducing the BYOD datasets we consider can increase the risk of misclassification.
+Full details of our fairness and diversity analyses are presented in Appendix \ref{app:fairness}. 
+
+
+\section{Conclusion and future work}
+\label{sec:conclusion}
+
+We introduce \datanet, a new benchmark for curating image-text datasets.
+\datanet allows for controlled experiments in dataset creation, enabling a similar paradigm as that seen in model development.
+Our benchmark supports experiments both augmenting our candidate pool with examples from new data sources, or coming up with new filtering approaches.
+In either case, our infrastructure makes experimenting with data curation ideas far simpler than creating an entire large dataset from scratch, and also provides a controlled environment that allows rigorous empirical experimentation.
+We believe that such an approach to dataset development will accelerate progress in machine learning because key datasets such as ImageNet or LAION-2B are currently rarely updated (if at all), while researchers develop many generations of new models on the same dataset. 
+
+In its current form, \datanet is a first step towards improving training datasets. We see several interesting directions for future work, including:
+
+\paragraph{Curating more data sources.} \pool and LAION-2B only draw text annotations from \texttt{alt}-text in the HTML \texttt{img} tags.
+Parsing websites more intelligently will likely unlock higher quality text annotations.
+In addition, identifying further data repositories and conducting broader or more targeted web crawls will hopefully yield better training data.
+Beyond real data, synthetic data from generative models or physics-based rendering are also promising directions.
+
+\paragraph{Improved data filtering.} So far we only experimented with basic filtering techniques in our baselines.
+We expect that better text processing, using alternative multimodal models as features, or other clustering approaches will result in better filtering methods for multimodal dataset design.
+
+\paragraph{Further supervision signals.} \pool relies entirely on the original captions from Common Crawl.
+Running image captioning models on the collected images may offer an alternative supervision signal and make it possible to train on images that do not come with a text annotation.
+In addition, bounding boxes for object detection or segmentation masks could be further useful information to incorporate into the training set.
+
+\paragraph{More modalities.} Beyond image-text pairs, contemporary machine learning relies on many additional forms of large pre-training datasets.
+Natural candidates for benchmarks similar to \datanet are text, video, structured documents, 3D objects, or graph-structured data.
+Moreover, as researchers build foundation models for specific scientific domains such as remote sensing, understanding data curation in specialized domains is also an important direction for future work.
+
+\paragraph{Broader evaluations.} Beyond our evaluation suite, researchers could investigate additional domains and tasks such as image generation, visual question answering, captioning and embodied tasks such as vision-and-language navigation. Moreover, our evaluation suite could be expanded beyond English to include multilingual tasks.
+
+
+\paragraph{Extended scaling trends.} While medium-scale experiments in \datanet usually predict performance at larger scales well, there are also phenomena that still appear puzzling.
+For instance, the 12.8M scale does not always predict the larger scales accurately, and the gains from our current BYOD experiments shrink with increased scale.
+Reliably extrapolating these performance changes across compute and data scales would assist future dataset design.
+And ideally, experiments on ever smaller scales than 12.8M would yield useful signal.
+Finally, it would be important to better characterize how data curation methods compare under different choices for model size and compute budget.
+
+\paragraph{Combining data sources.} While combining different data sources often leads to better performance than any individual source, in many cases the combination is worse than simply using the best source. Even when combining multiple data sources is productive, there is still the question of whether and by how much to upsample each source, which has a direct impact on performance. While we present related initial experiments in the \byod track, a more complete understanding of the optimal way to combine data sources is an exciting research direction for future work.
+
+
+% \paragraph{Fairness.}
+
+% \paragraph{Safety / privacy.}
+
+% \paragraph{Content attribution.}
+
+
+% Progress in any of these directions could improve our ability to build better training datasets, thereby  improving the models derived from them. 
+
+
+% OLD PARAGRAPH: For example, exploring additional data sources, both real---e.g., parsing websites more intelligently than relying on alt-text, identifying new data repositories, or more targeted web crawls---and synthetic---e.g., using generative models or physics based rendering. Moreover, using captioning models or other automatic methods for generating text could improve the quality of samples. Such methods would also enable using images which are not naturally accompanied by any text. 
+% Another promising direction for future work is better understanding how combining different data sources affects performance, and the effect of upsampling or downsampling certain dataset components. Finally, researchers could investigate curation strategies that better serve marginalized subgroups, and broaden the evaluation domains and tasks we study. For example, our evaluation suite could be extended to contain multilingual tasks, or to include other tasks such as image generation, captioning, and robot manipulation. Progress in any of these directions will improve our training datasets, which will in turn benefit a wide range of models and downstream applications.
+
+
+\section*{Acknowledgements}
+SYG and JH are supported by NSF Graduate Research Fellowships. GS is supported by the Onassis Foundation - Scholarship ID: F ZS 056-1/2022-2023. GD has been supported by the Onassis Fellowship (Scholarship ID: F ZS 012-1/2022-2023), the Bodossaki Fellowship and the Leventis Fellowship. This research has been supported by NSF Grants AF 1901292, CNS 2148141, DMS 2134012, TRIPODS II-DMS 2023166, Tripods CCF 1934932, IFML CCF 2019844 and research gifts by Western Digital, WNCG IAP, UT Austin Machine Learning Lab (MLL), Cisco, the Len Blavatnik and the Blavatnik Family Foundation, the Stanly P. Finch Centennial Professorship in Engineering, Open Philanthropy, Google, Microsoft, and the Allen Institute for AI. 
+
+We thank Stability AI and the Gauss Centre for Supercomputing e.V.\footnote{\url{https://gauss-centre.eu}} for providing us with compute resources to train models. We are thankful for the compute time provided through the John von Neumann Institute for Computing (NIC) on the GCS Supercomputer JUWELS Booster \citep{JUWELSBooster2020} at Jülich Supercomputing Centre (JSC), and for storage resources on JUST \citep{graf2021just} granted and operated by JSC, as well as computing and storage resources from the Helmholtz Data Federation (HDF).
+
+We would like to thank Amro Abbas, Danny Bickson, Alper Canberk, Jessie Chapman, Brian Cheung, Tim Dettmers, Joshua Gardner, Nancy Garland, Sachin Goyal, Huy Ha, Zaid Harchaoui, Ari Holtzman, Andrew Hundt, Andy Jones, Adam Klivans, Ronak Mehta, Sachit Menon, Ari Morcos, Raviteja Mullapudi, Jonathon Shlens, Brandon McKinzie, Alexander Toshev, David Grangier, Navdeep Jaitly, Kentrell Owens, Marco Tulio Ribeiro, Shiori Sagawa, Christoph Schuhmann, Matthew Wallingford, and Ross Wightman for helpful feedback at various stages of the project.
+
+We are particularly grateful to Daniel Levy and Alec Radford for early encouragement to pursue this project and feedback on the experimental design.
+
+\clearpage
+\bibliography{main}
+\bibliographystyle{main.bst}
+
+\newpage
+\appendix
+\onecolumn
+\input{appendix}
+
+
+
+\end{document}

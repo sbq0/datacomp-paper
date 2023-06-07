@@ -1,0 +1,171 @@
+\expandafter\ifx\csname doTocEntry\endcsname\relax \expandafter\endinput\fi 
+\doTocEntry\tocsection{1}{\csname a:TocLink\endcsname{1}{x1-10001}{QQ2-1-1}{Introduction}}{4}\relax 
+\doTocEntry\toclot{}{\csname a:TocLink\endcsname{1}{x1-1002}{}{\numberline {1}{\ignorespaces Zero-shot performance of CLIP models trained on various datasets. Our dataset \textsc  {DataComp}-1B\xspace  , assembled with a simple filtering procedure on image-text pairs from Common Crawl, leads to a model with higher accuracy than previous results while using the same or less compute. Training compute is measured in the total number of multiply-accumulate operations during training (MACs). See Section \:ref  {sec:evaluation} for details on the evaluation datasets. \relax }}}{6}\relax 
+\doTocEntry\toclof{}{\csname a:TocLink\endcsname{1}{x1-1004}{}{\numberline {1}{\ignorespaces Participant workflow. A) Participants first choose a scale, {\small  \texttt  {small}}, {\small  \texttt  {medium}}, {\small  \texttt  {large}} or {\small  \texttt  {xlarge}}, based on their resource constraints (submission to multiple scales is allowed). B) Participants create a candidate dataset, choosing one of two tracks: \textit  {filtering}, where only image-text pairs from \textsc  {CommonPool}\xspace  are allowed; or \textsc  {BYOD}\xspace  , where any data source (including \textsc  {CommonPool}\xspace  ) is permitted. C) Participants train a CLIP model on their candidate pool using a fixed architecture and hyperparameters (Section \:ref  {sec:training}). D) Participants evaluate the trained model on a suite of diverse downstream tasks (Section \:ref  {sec:evaluation}) and submit to our leaderboard.\relax }}}{10}\relax 
+\doTocEntry\tocsection{2}{\csname a:TocLink\endcsname{1}{x1-20002}{QQ2-1-2}{Related Work}}{11}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-30002}{QQ2-1-3}{The effects of data curation.}}{11}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-40002}{QQ2-1-4}{Large-scale multimodal datasets.}}{12}\relax 
+\doTocEntry\tocsection{3}{\csname a:TocLink\endcsname{1}{x1-50003}{QQ2-1-5}{\textsc  {DataComp}\xspace  }}{13}\relax 
+\doTocEntry\tocsubsection{3.1}{\csname a:TocLink\endcsname{1}{x1-60003.1}{QQ2-1-6}{Competition design}}{13}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-70003.1}{QQ2-1-7}{Competition tracks.}}{14}\relax 
+\doTocEntry\toclot{}{\csname a:TocLink\endcsname{1}{x1-7002}{}{\numberline {2}{\ignorespaces Experimental configuration for each scale. The number of samples seen during training at the largest scale is chosen to match the experimental setup from \citet  {radford2021learning}. Training compute is measured in the total number of multiply-accumulate operations (MACs).\relax }}}{17}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-80003.1}{QQ2-1-8}{Competition scales.}}{18}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-90003.1}{QQ2-1-9}{Preprocessing and safety.}}{18}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-100003.1}{QQ2-1-10}{Competition rules.}}{18}\relax 
+\doTocEntry\tocsubsection{3.2}{\csname a:TocLink\endcsname{1}{x1-110003.2}{QQ2-1-11}{\textsc  {CommonPool}\xspace  generation}}{18}\relax 
+\doTocEntry\toclof{}{\csname a:TocLink\endcsname{1}{x1-11003}{}{\numberline {2}{\ignorespaces Data funnel going from potential samples found in Common Crawl to the 13.1B image-text pairs that were suitable for \textsc  {CommonPool}\xspace  . We sampled uniformly 12.8B datapoints for the \small  {\texttt  {xlarge}} \textsc  {CommonPool}\xspace  .\relax }}}{21}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-120003.2}{QQ2-1-12}{Extracting urls and dowloading data.}}{22}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-130003.2}{QQ2-1-13}{NSFW preprocessing.}}{22}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-140003.2}{QQ2-1-14}{Evaluation set deduplication.}}{22}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-150003.2}{QQ2-1-15}{Face detection \& blurring.}}{22}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-160003.2}{QQ2-1-16}{Pool metadata.}}{23}\relax 
+\doTocEntry\tocsubsection{3.3}{\csname a:TocLink\endcsname{1}{x1-170003.3}{QQ2-1-17}{Bring your own data (\textsc  {BYOD}\xspace  )}}{23}\relax 
+\doTocEntry\tocsubsection{3.4}{\csname a:TocLink\endcsname{1}{x1-180003.4}{QQ2-1-18}{Training}}{23}\relax 
+\doTocEntry\tocsubsection{3.5}{\csname a:TocLink\endcsname{1}{x1-190003.5}{QQ2-1-19}{Evaluation}}{24}\relax 
+\doTocEntry\tocsection{4}{\csname a:TocLink\endcsname{1}{x1-200004}{QQ2-1-20}{Baselines}}{24}\relax 
+\doTocEntry\tocsubsection{4.1}{\csname a:TocLink\endcsname{1}{x1-210004.1}{QQ2-1-21}{Filtering baselines}}{24}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-220004.1}{QQ2-1-22}{No filtering.}}{25}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-230004.1}{QQ2-1-23}{Random subsets.}}{25}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-240004.1}{QQ2-1-24}{Basic filtering.}}{25}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-250004.1}{QQ2-1-25}{CLIP score and LAION filtering.}}{25}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-260004.1}{QQ2-1-26}{Text-based filtering.}}{25}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-270004.1}{QQ2-1-27}{Image-based filtering.}}{25}\relax 
+\doTocEntry\tocsubsection{4.2}{\csname a:TocLink\endcsname{1}{x1-280004.2}{QQ2-1-28}{\textsc  {BYOD}\xspace  baselines}}{26}\relax 
+\doTocEntry\toclot{}{\csname a:TocLink\endcsname{1}{x1-28002}{}{\numberline {3}{\ignorespaces Zero-shot performance for select baselines in the \textit  {filtering} track. On all scales, various filtering strategies lead to better performance than using the entire pool without filtering. The intersection between imaged-based and CLIP score strategies performs well on most tasks and scales. For all metrics, higher is better (see Appendix \:ref  {sec:app-eval} for details). $\cap $ denotes the intersection between filtering strategies. \relax }}}{28}\relax 
+\doTocEntry\tocsection{5}{\csname a:TocLink\endcsname{1}{x1-290005}{QQ2-1-29}{Results and discussion}}{29}\relax 
+\doTocEntry\tocsubsection{5.1}{\csname a:TocLink\endcsname{1}{x1-300005.1}{QQ2-1-30}{Building better datasets}}{29}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-310005.1}{QQ2-1-31}{Main results.}}{29}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-320005.1}{QQ2-1-32}{\textsc  {DataComp}\xspace  leads to better image-text datasets.}}{29}\relax 
+\doTocEntry\toclot{}{\csname a:TocLink\endcsname{1}{x1-32002}{}{\numberline {4}{\ignorespaces Zero-shot performance for select baselines in the \textsc  {BYOD}\xspace  track. External data sources can be effective in isolation or in combination with CommonPool. Moreover, upsampling external curated sources can improve performance. \relax }}}{31}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-330005.1}{QQ2-1-33}{External data sources can improve performance.}}{32}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-340005.1}{QQ2-1-34}{English filtering is helpful but not necessary.}}{32}\relax 
+\doTocEntry\toclof{}{\csname a:TocLink\endcsname{1}{x1-34002}{}{\numberline {3}{\ignorespaces Performance of random subsets (dotted line) and CLIP score filtering (solid line) when varying the subset size. When taking random subsets larger subsets are always better, but other filtering functions such as CLIP score perform best with subsets of intermediate size.\relax }}}{34}\relax 
+\doTocEntry\toclof{}{\csname a:TocLink\endcsname{1}{x1-34004}{}{\numberline {4}{\ignorespaces Performance as a function of the number of training samples from the {\small  \texttt  {medium}} scale. There is a significant variance in accuracy even when accounting for the size of the training set, suggesting that size is not the only determining factor of the quality of a dataset. Results for additional scales are shown in Appendix Figure \:ref  {fig:training-samples-extra}.\relax }}}{37}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-350005.1}{QQ2-1-35}{Trade-off between data diversity and repetition.}}{38}\relax 
+\doTocEntry\tocsubsection{5.2}{\csname a:TocLink\endcsname{1}{x1-360005.2}{QQ2-1-36}{\textsc  {DataComp}\xspace  design analyses}}{38}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-370005.2}{QQ2-1-37}{\textsc  {CommonPool}\xspace  and LAION are comparable with the same filtering.}}{38}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-380005.2}{QQ2-1-38}{Training set size alone does not explain performance.}}{38}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-390005.2}{QQ2-1-39}{Consistency across scales.}}{38}\relax 
+\doTocEntry\toclof{}{\csname a:TocLink\endcsname{1}{x1-39002}{}{\numberline {5}{\ignorespaces Correlation between performance at {\small  \texttt  {small}} and {\small  \texttt  {medium}} scales for various filtering strategies. The trends suggest that experiments at smaller scales can serve as useful guides for larger scales. Results for additional scales are shown in Appendix Figure \:ref  {fig:scaling-scatter-full}. \relax }}}{40}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-400005.2}{QQ2-1-40}{Consistency across training hyperparameters.}}{41}\relax 
+\doTocEntry\tocsubsection{5.3}{\csname a:TocLink\endcsname{1}{x1-410005.3}{QQ2-1-41}{Evaluation trends}}{41}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-420005.3}{QQ2-1-42}{ImageNet accuracy is indicative, but not the complete picture.}}{41}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-430005.3}{QQ2-1-43}{Robustness and fairness.}}{41}\relax 
+\doTocEntry\tocsection{6}{\csname a:TocLink\endcsname{1}{x1-440006}{QQ2-1-44}{Conclusion and future work}}{42}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-450006}{QQ2-1-45}{Curating more data sources.}}{42}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-460006}{QQ2-1-46}{Improved data filtering.}}{42}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-470006}{QQ2-1-47}{Further supervision signals.}}{42}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-480006}{QQ2-1-48}{More modalities.}}{42}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-490006}{QQ2-1-49}{Broader evaluations.}}{43}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-500006}{QQ2-1-50}{Extended scaling trends.}}{43}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-510006}{QQ2-1-51}{Combining data sources.}}{43}\relax 
+\doTocEntry\toclikesection{}{\csname a:TocLink\endcsname{1}{x1-520006}{QQ2-1-52}{Acknowledgements}}{43}\relax 
+\doTocEntry\toclikesection{}{\csname a:TocLink\endcsname{1}{x1-530006}{QQ2-1-53}{References}}{45}\relax 
+\doTocEntry\toclikepart{}{\csname a:TocLink\endcsname{1}{x1-540006}{QQ2-1-54}{Appendix}}{66}\relax 
+\doTocEntry\toclikesection{}{\csname a:TocLink\endcsname{1}{x1-550006}{QQ2-1-55}{Contents}}{66}\relax 
+\doTocEntry\tocsection{A}{\csname a:TocLink\endcsname{1}{x1-56000A}{QQ2-1-56}{Benchmark rules}}{67}\relax 
+\doTocEntry\tocsubsection{A.1}{\csname a:TocLink\endcsname{1}{x1-57000A.1}{QQ2-1-57}{Filtering track rules}}{67}\relax 
+\doTocEntry\tocsubsection{A.2}{\csname a:TocLink\endcsname{1}{x1-58000A.2}{QQ2-1-58}{Bring your own data track: amendments}}{68}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-59000A.2}{QQ2-1-59}{Checklist.}}{68}\relax 
+\doTocEntry\tocsection{B}{\csname a:TocLink\endcsname{1}{x1-60000B}{QQ2-1-60}{Contributions}}{69}\relax 
+\doTocEntry\tocsubsection{B.1}{\csname a:TocLink\endcsname{1}{x1-61000B.1}{QQ2-1-61}{Candidate pool}}{69}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-62000B.1}{QQ2-1-62}{Candidate pool lead.}}{69}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-63000B.1}{QQ2-1-63}{Data collection.}}{69}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-64000B.1}{QQ2-1-64}{Pre-processing and metadata.}}{69}\relax 
+\doTocEntry\tocsubsection{B.2}{\csname a:TocLink\endcsname{1}{x1-65000B.2}{QQ2-1-65}{Participant tooling}}{69}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-66000B.2}{QQ2-1-66}{Participant tooling lead.}}{70}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-67000B.2}{QQ2-1-67}{Resharder.}}{70}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-68000B.2}{QQ2-1-68}{Training.}}{70}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-69000B.2}{QQ2-1-69}{Evaluation.}}{70}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-70000B.2}{QQ2-1-70}{Additional infrastructure.}}{70}\relax 
+\doTocEntry\tocsubsection{B.3}{\csname a:TocLink\endcsname{1}{x1-71000B.3}{QQ2-1-71}{Baselines}}{70}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-72000B.3}{QQ2-1-72}{Baselines lead.}}{70}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-73000B.3}{QQ2-1-73}{Filtering track.}}{70}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-74000B.3}{QQ2-1-74}{BYOD track.}}{70}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-75000B.3}{QQ2-1-75}{Experiment babysitting.}}{71}\relax 
+\doTocEntry\tocsubsection{B.4}{\csname a:TocLink\endcsname{1}{x1-76000B.4}{QQ2-1-76}{Leadership and Advising}}{71}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-77000B.4}{QQ2-1-77}{Advising.}}{71}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-78000B.4}{QQ2-1-78}{Leadership.}}{71}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-79000B.4}{QQ2-1-79}{Overall project lead.}}{71}\relax 
+\doTocEntry\tocsection{C}{\csname a:TocLink\endcsname{1}{x1-80000C}{QQ2-1-80}{Additional related work}}{71}\relax 
+\doTocEntry\tocsection{D}{\csname a:TocLink\endcsname{1}{x1-81000D}{QQ2-1-81}{Parsing Common Crawl}}{72}\relax 
+\doTocEntry\tocsection{E}{\csname a:TocLink\endcsname{1}{x1-82000E}{QQ2-1-82}{Not safe for work (NSFW) filtering}}{73}\relax 
+\doTocEntry\toclot{}{\csname a:TocLink\endcsname{1}{x1-82002}{}{\numberline {5}{\ignorespaces Detoxify positive rates by threshold on 1 million caption subset of Common Crawl.\relax }}}{75}\relax 
+\doTocEntry\toclot{}{\csname a:TocLink\endcsname{1}{x1-82004}{}{\numberline {6}{\ignorespaces Comparing LAION-2B CLIP based NSFW filtering model to Google Vision API Safe Search adult category on a 40,000 random subset of Common Crawl.\relax }}}{78}\relax 
+\doTocEntry\tocsection{F}{\csname a:TocLink\endcsname{1}{x1-83000F}{QQ2-1-83}{Deduplication against evaluation sets}}{79}\relax 
+\doTocEntry\toclof{}{\csname a:TocLink\endcsname{1}{x1-83002}{}{\numberline {6}{\ignorespaces  Candidate images (top) that are detected as duplicates against images in the evaluation sets (bottom) are removed from the pool. In addition to exact duplicate images, near-duplicates with variable aspect ratios, JPEG compression, overlays, color adjustment, and artistic rendering are also detected. \relax }}}{81}\relax 
+\doTocEntry\toclof{}{\csname a:TocLink\endcsname{1}{x1-83004}{}{\numberline {7}{\ignorespaces Analysis of different de-duplication strategies across a variety of image transformations. We see that the model introduced by \citet  {Yokoo2021Dedup} is better in almost every transformation, with the exception of very aggressive aspect ratio modification.\relax }}}{84}\relax 
+\doTocEntry\tocsection{G}{\csname a:TocLink\endcsname{1}{x1-84000G}{QQ2-1-84}{Face blurring}}{85}\relax 
+\doTocEntry\toclot{}{\csname a:TocLink\endcsname{1}{x1-84002}{}{\numberline {7}{\ignorespaces Face detection performance on a set of 3293 random images from \textsc  {CommonPool}\xspace  .\relax }}}{87}\relax 
+\doTocEntry\toclof{}{\csname a:TocLink\endcsname{1}{x1-84004}{}{\numberline {8}{\ignorespaces Frequency of predicted number of faces in the {\small  \texttt  {small}} \textsc  {CommonPool}\xspace  .\relax }}}{90}\relax 
+\doTocEntry\toclot{}{\csname a:TocLink\endcsname{1}{x1-84006}{}{\numberline {8}{\ignorespaces Effect of face blurring on zero-shot performance. Face blurring improves the privacy preservation of our dataset, while affecting model performance negligibly. Results shown for the {\small  \texttt  {medium}} scale.\relax }}}{93}\relax 
+\doTocEntry\tocsection{H}{\csname a:TocLink\endcsname{1}{x1-85000H}{QQ2-1-85}{\textsc  {DataComp}\xspace  \textsc  {CommonPool}\xspace  creation pipeline}}{94}\relax 
+\doTocEntry\toclot{}{\csname a:TocLink\endcsname{1}{x1-85002}{}{\numberline {9}{\ignorespaces Provided metadata for \textsc  {CommonPool}\xspace  .\relax }}}{96}\relax 
+\doTocEntry\tocsection{I}{\csname a:TocLink\endcsname{1}{x1-86000I}{QQ2-1-86}{\textsc  {CommonPool}\xspace  statistics}}{98}\relax 
+\doTocEntry\toclof{}{\csname a:TocLink\endcsname{1}{x1-86002}{}{\numberline {9}{\ignorespaces Image-text similarity score distributions using CLIP ViT-B/32 \emph  {(left)} and ViT-L/14 \emph  {(right)} models. We plot samples from the \texttt  {small} \textsc  {CommonPool}\xspace  , which are an i.i.d. sample of the \texttt  {xlarge} \textsc  {CommonPool}\xspace  .\relax }}}{100}\relax 
+\doTocEntry\toclof{}{\csname a:TocLink\endcsname{1}{x1-86004}{}{\numberline {10}{\ignorespaces Statistics for images in the \texttt  {small} \textsc  {CommonPool}\xspace  , before applying resizing.\relax }}}{103}\relax 
+\doTocEntry\toclof{}{\csname a:TocLink\endcsname{1}{x1-86006}{}{\numberline {11}{\ignorespaces \textbf  {Image pixel heatmap.} Each entry in the above heatmap represents the estimated probability that a pixel is occupied. The center entry has a value of 1.0 as every image has a center pixel. We compute the heatmap over the {\small  \texttt  {small}} \textsc  {CommonPool}\xspace  . Note that image sizes are bounded as we resize all images such that their max dimension does not exceed 512px during dataset download.\relax }}}{106}\relax 
+\doTocEntry\toclof{}{\csname a:TocLink\endcsname{1}{x1-86008}{}{\numberline {12}{\ignorespaces Distribution of token length for alt-text in the {\small  \texttt  {small}} \textsc  {CommonPool}\xspace  . The CLIP BPE tokenizer is used for tokenization.\relax }}}{109}\relax 
+\doTocEntry\toclof{}{\csname a:TocLink\endcsname{1}{x1-86010}{}{\numberline {13}{\ignorespaces Counts for the top 25 most frequent languages in the {\small  \texttt  {small}} \textsc  {CommonPool}\xspace  , as predicted by fasttext \emph  {(left)} and cld3 (\emph  {right}).\relax }}}{112}\relax 
+\doTocEntry\toclof{}{\csname a:TocLink\endcsname{1}{x1-86012}{}{\numberline {14}{\ignorespaces Counts for the top 25 most frequent domains \emph  {(left)} and suffixes (\emph  {right}) in the {\small  \texttt  {small}} \textsc  {CommonPool}\xspace  .\relax }}}{115}\relax 
+\doTocEntry\tocsection{J}{\csname a:TocLink\endcsname{1}{x1-87000J}{QQ2-1-87}{Efficient training on data subsets}}{116}\relax 
+\doTocEntry\tocsection{K}{\csname a:TocLink\endcsname{1}{x1-88000K}{QQ2-1-88}{Effect of duplicates in the training data}}{117}\relax 
+\doTocEntry\toclot{}{\csname a:TocLink\endcsname{1}{x1-88002}{}{\numberline {10}{\ignorespaces Effect of deduplication of training set for the medium size \textsc  {CommonPool}\xspace  . The filtering performed here is CLIP B32 score top 30% (see Table \:ref  {tab:full-medium}). Higher threshold values lead to more samples being labeled as duplicates.\relax }}}{119}\relax 
+\doTocEntry\tocsection{L}{\csname a:TocLink\endcsname{1}{x1-89000L}{QQ2-1-89}{Training with additional steps}}{120}\relax 
+\doTocEntry\toclof{}{\csname a:TocLink\endcsname{1}{x1-89002}{}{\numberline {15}{\ignorespaces \emph  {(left)} The effect of training for 10$\times $ steps for for {\small  \texttt  {small}} filtering track baselines on ImageNet. \emph  {(right)} Similar plot but for Avg. performance. While the ordering of some methods changes quite drastically, we, in general, see a positive correlation.\relax }}}{122}\relax 
+\doTocEntry\toclot{}{\csname a:TocLink\endcsname{1}{x1-89004}{}{\numberline {11}{\ignorespaces Experiment details when extending the number of steps by 10 times the standard amount for that scale.\relax }}}{125}\relax 
+\doTocEntry\tocsection{M}{\csname a:TocLink\endcsname{1}{x1-90000M}{QQ2-1-90}{Training details}}{126}\relax 
+\doTocEntry\toclot{}{\csname a:TocLink\endcsname{1}{x1-90002}{}{\numberline {12}{\ignorespaces Experimental configuration for each scale, including the size of the pool we provide, the model architecture and hyperparameters.\relax }}}{128}\relax 
+\doTocEntry\tocsection{N}{\csname a:TocLink\endcsname{1}{x1-91000N}{QQ2-1-91}{Evaluation details}}{129}\relax 
+\doTocEntry\toclot{}{\csname a:TocLink\endcsname{1}{x1-91002}{}{\numberline {13}{\ignorespaces Evaluation tasks.\relax }}}{131}\relax 
+\doTocEntry\toclof{}{\csname a:TocLink\endcsname{1}{x1-91004}{}{\numberline {16}{\ignorespaces Randomly sampled images from the evaluation datasets we consider.\relax }}}{134}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-92000N}{QQ2-1-92}{Prompt choice.}}{135}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-93000N}{QQ2-1-93}{Evaluation metrics.}}{135}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-94000N}{QQ2-1-94}{Clean subset.}}{135}\relax 
+\doTocEntry\toclof{}{\csname a:TocLink\endcsname{1}{x1-94002}{}{\numberline {17}{\ignorespaces Zero-shot ImageNet and Linear probe ImageNet performance for models from Tables \:ref  {tab:main} and \:ref  {tab:byod}. Relative ordering of models demonstrates high rank correlations of 0.99 and 1.0 for \textsc  {CommonPool}\xspace  and \textsc  {BYOD}\xspace  respectively.\relax }}}{137}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-95000N}{QQ2-1-95}{Zero-shot vs. fine-tuning protocols.}}{138}\relax 
+\doTocEntry\tocsection{O}{\csname a:TocLink\endcsname{1}{x1-96000O}{QQ2-1-96}{Baseline details}}{138}\relax 
+\doTocEntry\toclof{}{\csname a:TocLink\endcsname{1}{x1-96002}{}{\numberline {18}{\ignorespaces An i.i.d. sample from {\small  \texttt  {small}} \textsc  {CommonPool}\xspace  generated after applying the \emph  {No filter} strategy. Hence, these samples represent random images from \textsc  {CommonPool}\xspace  .\relax }}}{140}\relax 
+\doTocEntry\toclof{}{\csname a:TocLink\endcsname{1}{x1-96004}{}{\numberline {19}{\ignorespaces An i.i.d. sample from {\small  \texttt  {small}} \textsc  {CommonPool}\xspace  generated after applying the \emph  {Basic filter} strategy.\relax }}}{143}\relax 
+\doTocEntry\toclof{}{\csname a:TocLink\endcsname{1}{x1-96006}{}{\numberline {20}{\ignorespaces An i.i.d. sample from {\small  \texttt  {small}} \textsc  {CommonPool}\xspace  generated after applying the CLIP score (L/14 30%)\relax }}}{146}\relax 
+\doTocEntry\tocsubsection{O.1}{\csname a:TocLink\endcsname{1}{x1-97000O.1}{QQ2-1-97}{Filtering track}}{147}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-98000O.1}{QQ2-1-98}{Basic filtering.}}{147}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-99000O.1}{QQ2-1-99}{CLIP thresholds.}}{147}\relax 
+\doTocEntry\toclot{}{\csname a:TocLink\endcsname{1}{x1-99002}{}{\numberline {14}{\ignorespaces CLIP threshold filtering configurations. ``Fraction'' denotes the size of the filtered subset relative to the pool.\relax }}}{149}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-100000O.1}{QQ2-1-100}{Text-based filtering.}}{150}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-101000O.1}{QQ2-1-101}{Text-based sampling.}}{150}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-102000O.1}{QQ2-1-102}{Image-based filtering.}}{150}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-103000O.1}{QQ2-1-103}{Image-based sampling.}}{152}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-104000O.1}{QQ2-1-104}{ImageNet distance filtering.}}{152}\relax 
+\doTocEntry\tocsubsection{O.2}{\csname a:TocLink\endcsname{1}{x1-105000O.2}{QQ2-1-105}{\textsc  {BYOD}\xspace  track}}{152}\relax 
+\doTocEntry\toclot{}{\csname a:TocLink\endcsname{1}{x1-105004}{}{\numberline {15}{\ignorespaces Measuring the quality of external data sources\relax }}}{155}\relax 
+\doTocEntry\toclot{}{\csname a:TocLink\endcsname{1}{x1-105006}{}{\numberline {16}{\ignorespaces Zero-shot performance for select baselines in the \textsc  {BYOD}\xspace  track. Unless specified otherwise, \textsc  {CommonPool}\xspace  means our pool filtered with CLIP score (L/14, 30%). \relax }}}{158}\relax 
+\doTocEntry\tocsubsubsection{O.2.1}{\csname a:TocLink\endcsname{1}{x1-106000O.2.1}{QQ2-1-106}{Additional results}}{159}\relax 
+\doTocEntry\tocsection{P}{\csname a:TocLink\endcsname{1}{x1-107000P}{QQ2-1-107}{Fairness and biases}}{159}\relax 
+\doTocEntry\tocsubsection{P.1}{\csname a:TocLink\endcsname{1}{x1-108000P.1}{QQ2-1-108}{Diversity}}{159}\relax 
+\doTocEntry\toclof{}{\csname a:TocLink\endcsname{1}{x1-108002}{}{\numberline {21}{\ignorespaces Comparison of average and worst-group scores for Dollar Street and GeoDE diversity datasets. On Dollar Street, our overall higher-performing models display a larger worst-group performance gap (corresponding to lower income households). GeoDE does not appear to show this trend.\relax }}}{161}\relax 
+\doTocEntry\tocsubsection{P.2}{\csname a:TocLink\endcsname{1}{x1-109000P.2}{QQ2-1-109}{Fairness}}{162}\relax 
+\doTocEntry\toclot{}{\csname a:TocLink\endcsname{1}{x1-109002}{}{\numberline {17}{\ignorespaces Overall race, gender, and age classification accuracy of our two best {\small  \texttt  {xlarge}} baselines, Image-based $\cap $ CLIP score (L/14 30%) for the filtering track and \textsc  {CommonPool}\xspace  , CLIP score + 4 external sources (upsampled 6x) for the \textsc  {BYOD}\xspace  track. Race classification was binary (white or non-white) as in \citet  {karkkainen2021fairface}.\relax }}}{165}\relax 
+\doTocEntry\toclot{}{\csname a:TocLink\endcsname{1}{x1-109004}{}{\numberline {18}{\ignorespaces Gender classification accuracy of our two best {\small  \texttt  {xlarge}} baselines, Image-based $\cap $ CLIP score (L/14 30%) for the filtering track and \textsc  {CommonPool}\xspace  , CLIP score + 4 external sources (upsampled 6x) for the \textsc  {BYOD}\xspace  track.\relax }}}{168}\relax 
+\doTocEntry\toclot{}{\csname a:TocLink\endcsname{1}{x1-109006}{}{\numberline {19}{\ignorespaces Harmful misclassification rates of our two best {\small  \texttt  {xlarge}} baselines, Image-based $\cap $ CLIP score (L/14 30%) for the filtering track and \textsc  {CommonPool}\xspace  , CLIP score + 4 external sources (upsampled 6x) for the \textsc  {BYOD}\xspace  track. While very few samples are misclassified as non-human, the filter track model assigns a crime-related label to a significant portion of people, and this is exacerbated by the \textsc  {BYOD}\xspace  model in many cases.\relax }}}{171}\relax 
+\doTocEntry\tocsection{Q}{\csname a:TocLink\endcsname{1}{x1-110000Q}{QQ2-1-110}{Extra figures and tables}}{173}\relax 
+\doTocEntry\toclof{}{\csname a:TocLink\endcsname{1}{x1-110002}{}{\numberline {22}{\ignorespaces Improving downstream performance at smaller scales correlates positively with performance gains at larger scales. These trends suggests that dataset filtering can be studied effectively at smaller scales, even with less computational resources.\relax }}}{175}\relax 
+\doTocEntry\toclot{}{\csname a:TocLink\endcsname{1}{x1-110004}{}{\numberline {20}{\ignorespaces Rank correlation between the performance obtained with various filtering strategies at two different scales. Our experimental suggest that the ranking is relatively consistent between scales, especially for the adjacent scale pairs.\relax }}}{178}\relax 
+\doTocEntry\toclof{}{\csname a:TocLink\endcsname{1}{x1-110006}{}{\numberline {23}{\ignorespaces Performance as a function of the number of training samples from the {\small  \texttt  {small}} (top) and {\small  \texttt  {large}} (bottom) scales. There is a significant variance in accuracy even when accounting for the size of the training set.\relax }}}{181}\relax 
+\doTocEntry\toclof{}{\csname a:TocLink\endcsname{1}{x1-110008}{}{\numberline {24}{\ignorespaces We examine the percentage of texts classified as English after taking the top fraction (on the x-axis) of the {\small  \texttt  {large}} billion pool as sorted by CLIP similarity score. We see that doing CLIP filtering implicitly does some English filtering, as image-text pairs with a higher CLIP score are more frequently classified as English.\relax }}}{184}\relax 
+\doTocEntry\toclof{}{\csname a:TocLink\endcsname{1}{x1-110010}{}{\numberline {25}{\ignorespaces Correlation between ImageNet accuracy and average performance on our suite of evaluation tasks. While ImageNet accuracy strongly correlates with the average performance (both on the clean subset and the full suite), the same is not true for all individual datasets we study, as shown in Appendix \:ref  {sec:app-more-plots}.\relax }}}{187}\relax 
+\doTocEntry\toclof{}{\csname a:TocLink\endcsname{1}{x1-110012}{}{\numberline {26}{\ignorespaces Zero-shot CLIP models trained with various filtering strategies form a reliable trend relating accuracy on ImageNet and related distribution shifts, exhibiting higher effective robustness when compared to ImageNet-trained models from \citet  {taori2020measuring}.\relax }}}{190}\relax 
+\doTocEntry\toclof{}{\csname a:TocLink\endcsname{1}{x1-110014}{}{\numberline {27}{\ignorespaces Zero-shot performance on other datasets is often positively correlated with that on ImageNet, but not always. In cases where ImageNet shows close to zero correlation with other datasets, performance on that dataset is often close to random chance.\relax }}}{193}\relax 
+\doTocEntry\toclot{}{\csname a:TocLink\endcsname{1}{x1-110016}{}{\numberline {21}{\ignorespaces Baseline results for the filtering track, {\small  \texttt  {small}} scale.\relax }}}{196}\relax 
+\doTocEntry\toclot{}{\csname a:TocLink\endcsname{1}{x1-110018}{}{\numberline {22}{\ignorespaces Baseline results for the filtering track, {\small  \texttt  {medium}} scale.\relax }}}{200}\relax 
+\doTocEntry\toclot{}{\csname a:TocLink\endcsname{1}{x1-110020}{}{\numberline {23}{\ignorespaces Baseline results for the filtering track, {\small  \texttt  {large}} scale.\relax }}}{204}\relax 
+\doTocEntry\toclot{}{\csname a:TocLink\endcsname{1}{x1-110022}{}{\numberline {24}{\ignorespaces Baseline results for the filtering track, {\small  \texttt  {xlarge}} scale.\relax }}}{207}\relax 
+\doTocEntry\tocsection{R}{\csname a:TocLink\endcsname{1}{x1-111000R}{QQ2-1-111}{Datasheet}}{209}\relax 
+\doTocEntry\tocsubsection{R.1}{\csname a:TocLink\endcsname{1}{x1-112000R.1}{QQ2-1-112}{Motivation}}{209}\relax 
+\doTocEntry\tocsubsection{R.2}{\csname a:TocLink\endcsname{1}{x1-113000R.2}{QQ2-1-113}{Composition}}{210}\relax 
+\doTocEntry\tocsubsection{R.3}{\csname a:TocLink\endcsname{1}{x1-114000R.3}{QQ2-1-114}{Collection Process}}{214}\relax 
+\doTocEntry\tocsubsection{R.4}{\csname a:TocLink\endcsname{1}{x1-115000R.4}{QQ2-1-115}{Preprocessing, Cleaning, and/or Labeling}}{217}\relax 
+\doTocEntry\tocsubsection{R.5}{\csname a:TocLink\endcsname{1}{x1-116000R.5}{QQ2-1-116}{Uses}}{219}\relax 
+\doTocEntry\tocsubsection{R.6}{\csname a:TocLink\endcsname{1}{x1-117000R.6}{QQ2-1-117}{Distribution}}{220}\relax 
+\doTocEntry\tocsubsection{R.7}{\csname a:TocLink\endcsname{1}{x1-118000R.7}{QQ2-1-118}{Maintenance}}{222}\relax 
+\par 
